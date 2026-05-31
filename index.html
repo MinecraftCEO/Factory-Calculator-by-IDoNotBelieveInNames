@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory Calculator by IDoNotBelieveInNames</title>
+    <style>
+        :root {
+            --bg: #060912;
+            --card: #111827;
+            --blue: #38bdf8;
+            --pink: #f472b6;
+            --green: #4ade80;
+            --text: #f1f5f9;
+            --border: #1f2937;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container { max-width: 1100px; width: 100%; }
+
+        h1 {
+            text-align: center;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            padding: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .stat-card label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--blue);
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .stat-card input {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            color: var(--green);
+            font-size: 2rem;
+            text-align: center;
+            width: 90%;
+            border-radius: 8px;
+            outline: none;
+            padding: 5px;
+        }
+
+        /* Tier Grid */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .tier-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-bottom: 3px solid var(--pink);
+            transition: all 0.3s ease;
+        }
+
+        .tier-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+
+        .tier-title {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--pink);
+        }
+
+        .tier-title span { color: #6b7280; font-size: 0.75rem; }
+
+        .input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        .field-box label {
+            display: block;
+            font-size: 0.65rem;
+            color: #9ca3af;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .field-box input {
+            width: 100%;
+            background: #060912;
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .tier-time {
+            margin-top: 12px;
+            padding-top: 8px;
+            border-top: 1px dashed #374151;
+            font-size: 0.8rem;
+            text-align: center;
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        /* Summary Section */
+        .summary-box {
+            background: linear-gradient(145deg, #111827, #0f172a);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--green);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            box-shadow: 0 0 30px rgba(74, 222, 128, 0.1);
+        }
+
+        .res-column h3 {
+            margin-top: 0;
+            color: var(--blue);
+            font-size: 1rem;
+            border-bottom: 1px solid #1f2937;
+            padding-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .res-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .res-label { color: #9ca3af; }
+        .res-val { color: var(--green); font-weight: bold; }
+
+        .big-result {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(74, 222, 128, 0.03);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .done-text {
+            font-size: 1.6rem;
+            color: var(--green);
+            margin-top: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .target-subtext { font-size: 0.75rem; color: #4b5563; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Factory Calculator by IDoNotBelieveInNames</h1>
+
+    <div class="top-bar">
+        <div class="stat-card">
+            <label>Points / Sec (Rate)</label>
+            <input type="number" id="rate" value="200" oninput="calculate()">
+        </div>
+        <div class="stat-card">
+            <label>Real Points Needed</label>
+            <div id="pts-needed" style="font-size: 2rem; font-weight: bold; color: var(--pink); margin-top: 5px;">0</div>
+        </div>
+    </div>
+
+    <div class="tier-grid" id="tier-container">
+        <!-- JS generates Tier 1-7 -->
+    </div>
+
+    <div class="summary-box">
+        <div class="res-column">
+            <h3>TIME ESTIMATION</h3>
+            <div class="res-row"><span class="res-label">Seconds:</span> <span class="res-val" id="out-s">0</span></div>
+            <div class="res-row"><span class="res-label">Minutes:</span> <span class="res-val" id="out-m">0</span></div>
+            <div class="res-row"><span class="res-label">Hours:</span> <span class="res-val" id="out-h">0</span></div>
+            <div class="res-row"><span class="res-label">Days:</span> <span class="res-val" id="out-d">0</span></div>
+        </div>
+
+        <div class="res-column big-result">
+            <h3>COMPLETION DATE</h3>
+            <div class="res-label">Time Needed: <span id="hms-needed" style="color: white; font-weight: bold;">00:00:00</span></div>
+            <div class="done-text" id="done-by">--/--/-- - --:--pm</div>
+            <div class="target-subtext">Total Target Points: <span id="out-total-pts">0</span></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const tiers = [
+        { id: 1, mult: 1, h: 50000, w: 100000 },
+        { id: 2, mult: 5, h: 5000, w: 0 },
+        { id: 3, mult: 25, h: 15000, w: 50000 },
+        { id: 4, mult: 125, h: 1000, w: 4000 },
+        { id: 5, mult: 625, h: 1000, w: 4000 },
+        { id: 6, mult: 3125, h: 200, w: 2000 },
+        { id: 7, mult: 15625, h: 100, w: 1000 }
+    ];
+
+    // Build the Grid
+    const container = document.getElementById('tier-container');
+    tiers.forEach(t => {
+        container.innerHTML += `
+            <div class="tier-card">
+                <div class="tier-title">TIER ${t.id} <span>Value: ${t.mult.toLocaleString()}</span></div>
+                <div class="input-group">
+                    <div class="field-box">
+                        <label>Have</label>
+                        <input type="number" class="have-in" data-tier="${t.id}" data-mult="${t.mult}" value="${t.h}" oninput="calculate()">
+                    </div>
+                    <div class="field-box">
+                        <label>Want</label>
+                        <input type="number" class="want-in" data-tier="${t.id}" data-mult="${t.mult}" value="${t.w}" oninput="calculate()">
+                    </div>
+                </div>
+                <div class="tier-time" id="tier-time-${t.id}">Time: 0s</div>
+            </div>
+        `;
+    });
+
+    function formatCustomDate(date) {
+        const d = String(date.getDate()).padStart(2, '0');
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const y = String(date.getFullYear()).slice(-2);
+        
+        let hours = date.getHours();
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        
+        return `${d}/${m}/${y} - ${hours}:${minutes}${ampm}`;
+    }
+
+    function formatHMS(totalSeconds) {
+        if (totalSeconds <= 0) return "00:00:00";
+        const h = Math.floor(totalSeconds / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = Math.floor(totalSeconds % 60);
+        return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function calculate() {
+        const rate = parseFloat(document.getElementById('rate').value) || 0;
+        let currentPoints = 0;
+        let targetPoints = 0;
+
+        const haveInputs = document.querySelectorAll('.have-in');
+        const wantInputs = document.querySelectorAll('.want-in');
+
+        // Logic: All buildings are converted to Tier 1 "Points"
+        // Merging logic (5x) is handled by the "mult" (1, 5, 25, 125...)
+        
+        // 1. Calculate current wealth in points
+        haveInputs.forEach(input => {
+            const val = parseFloat(input.value) || 0;
+            const mult = parseFloat(input.dataset.mult);
+            currentPoints += (val * mult);
+        });
+
+        // 2. Calculate target wealth in points
+        wantInputs.forEach(input => {
+            const val = parseFloat(input.value) || 0;
+            const mult = parseFloat(input.dataset.mult);
+            targetPoints += (val * mult);
+        });
+
+        // 3. Overall calculation
+        const diff = Math.max(0, targetPoints - currentPoints);
+        const totalSec = rate > 0 ? diff / rate : 0;
+
+        // 4. Update individual Tier times
+        // Logic: How long does it take to reach just THIS tier's goal?
+        tiers.forEach(t => {
+            const h = parseFloat(document.querySelector(`.have-in[data-tier="${t.id}"]`).value) || 0;
+            const w = parseFloat(document.querySelector(`.want-in[data-tier="${t.id}"]`).value) || 0;
+            
+            // To reach this tier's target, we need (Want - Have) * Multiplier
+            const tierDiff = Math.max(0, (w - h) * t.mult);
+            const tierSec = rate > 0 ? tierDiff / rate : 0;
+            
+            const timeSpan = document.getElementById(`tier-time-${t.id}`);
+            if (tierSec <= 0 && w > 0) timeSpan.innerText = "Goal Reached!";
+            else if (w === 0) timeSpan.innerText = "No Target";
+            else timeSpan.innerText = "Time: " + formatHMS(tierSec);
+        });
+
+        // 5. Global UI Updates
+        document.getElementById('pts-needed').innerText = diff.toLocaleString();
+        document.getElementById('out-total-pts').innerText = targetPoints.toLocaleString();
+        
+        document.getElementById('out-s').innerText = totalSec.toLocaleString(undefined, {maximumFractionDigits: 1});
+        document.getElementById('out-m').innerText = (totalSec / 60).toLocaleString(undefined, {maximumFractionDigits: 1});
+        document.getElementById('out-h').innerText = (totalSec / 3600).toLocaleString(undefined, {maximumFractionDigits: 1});
+        document.getElementById('out-d').innerText = (totalSec / 86400).toLocaleString(undefined, {maximumFractionDigits: 1});
+        document.getElementById('hms-needed').innerText = formatHMS(totalSec);
+
+        // Date Prediction
+        if (totalSec > 0) {
+            const doneDate = new Date(new Date().getTime() + (totalSec * 1000));
+            document.getElementById('done-by').innerText = formatCustomDate(doneDate);
+        } else {
+            document.getElementById('done-by').innerText = targetPoints > 0 ? "GOAL REACHED!" : "--/--/-- - --:--pm";
+        }
+    }
+
+    // Initial run
+    calculate();
+</script>
+
+</body>
+</html>
