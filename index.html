@@ -38,7 +38,6 @@
             text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
         }
 
-        /* Top Bar */
         .top-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -76,7 +75,6 @@
             padding: 5px;
         }
 
-        /* Tier Grid */
         .tier-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -135,7 +133,6 @@
             font-weight: bold;
         }
 
-        /* Summary Section */
         .summary-box {
             background: linear-gradient(145deg, #111827, #0f172a);
             border-radius: 15px;
@@ -195,7 +192,7 @@
     <div class="top-bar">
         <div class="stat-card">
             <label>Points / Sec (Rate)</label>
-            <input type="number" id="rate" value="200" oninput="calculate()">
+            <input type="text" id="rate" value="200" oninput="handleInput(this)">
         </div>
         <div class="stat-card">
             <label>Real Points Needed</label>
@@ -203,9 +200,7 @@
         </div>
     </div>
 
-    <div class="tier-grid" id="tier-container">
-        <!-- JS generates Tier 1-7 -->
-    </div>
+    <div class="tier-grid" id="tier-container"></div>
 
     <div class="summary-box">
         <div class="res-column">
@@ -236,20 +231,48 @@
         { id: 7, mult: 15625, h: 100, w: 1000 }
     ];
 
+    // Number Formatting Helpers
+    function formatWithCommas(n) {
+        return n.toLocaleString('en-US');
+    }
+
+    function parseFormattedNumber(s) {
+        return parseFloat(s.replace(/,/g, '')) || 0;
+    }
+
+    // Input Handler: Formats as you type
+    function handleInput(el) {
+        let cursorPosition = el.selectionStart;
+        let originalLength = el.value.length;
+        
+        let rawValue = el.value.replace(/[^0-9]/g, '');
+        if (rawValue === "") {
+            el.value = "";
+        } else {
+            el.value = parseInt(rawValue).toLocaleString('en-US');
+        }
+
+        // Keep cursor position stable
+        let newLength = el.value.length;
+        el.setSelectionRange(cursorPosition + (newLength - originalLength), cursorPosition + (newLength - originalLength));
+        
+        calculate();
+    }
+
     // Build the Grid
     const container = document.getElementById('tier-container');
     tiers.forEach(t => {
         container.innerHTML += `
             <div class="tier-card">
-                <div class="tier-title">TIER ${t.id} <span>Value: ${t.mult.toLocaleString()}</span></div>
+                <div class="tier-title">TIER ${t.id} <span>Value: ${formatWithCommas(t.mult)}</span></div>
                 <div class="input-group">
                     <div class="field-box">
                         <label>Have</label>
-                        <input type="number" class="have-in" data-tier="${t.id}" data-mult="${t.mult}" value="${t.h}" oninput="calculate()">
+                        <input type="text" class="have-in" data-tier="${t.id}" data-mult="${t.mult}" value="${formatWithCommas(t.h)}" oninput="handleInput(this)">
                     </div>
                     <div class="field-box">
                         <label>Want</label>
-                        <input type="number" class="want-in" data-tier="${t.id}" data-mult="${t.mult}" value="${t.w}" oninput="calculate()">
+                        <input type="text" class="want-in" data-tier="${t.id}" data-mult="${t.mult}" value="${formatWithCommas(t.w)}" oninput="handleInput(this)">
                     </div>
                 </div>
                 <div class="tier-time" id="tier-time-${t.id}">Time: 0s</div>
@@ -261,13 +284,10 @@
         const d = String(date.getDate()).padStart(2, '0');
         const m = String(date.getMonth() + 1).padStart(2, '0');
         const y = String(date.getFullYear()).slice(-2);
-        
         let hours = date.getHours();
         const minutes = String(date.getMinutes()).padStart(2, '0');
         const ampm = hours >= 12 ? 'pm' : 'am';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
-        
+        hours = hours % 12 || 12;
         return `${d}/${m}/${y} - ${hours}:${minutes}${ampm}`;
     }
 
@@ -280,72 +300,55 @@
     }
 
     function calculate() {
-        const rate = parseFloat(document.getElementById('rate').value) || 0;
+        const rate = parseFormattedNumber(document.getElementById('rate').value);
         let currentPoints = 0;
         let targetPoints = 0;
 
         const haveInputs = document.querySelectorAll('.have-in');
         const wantInputs = document.querySelectorAll('.want-in');
 
-        // Logic: All buildings are converted to Tier 1 "Points"
-        // Merging logic (5x) is handled by the "mult" (1, 5, 25, 125...)
-        
-        // 1. Calculate current wealth in points
         haveInputs.forEach(input => {
-            const val = parseFloat(input.value) || 0;
-            const mult = parseFloat(input.dataset.mult);
-            currentPoints += (val * mult);
+            currentPoints += parseFormattedNumber(input.value) * parseFloat(input.dataset.mult);
         });
 
-        // 2. Calculate target wealth in points
         wantInputs.forEach(input => {
-            const val = parseFloat(input.value) || 0;
-            const mult = parseFloat(input.dataset.mult);
-            targetPoints += (val * mult);
+            targetPoints += parseFormattedNumber(input.value) * parseFloat(input.dataset.mult);
         });
 
-        // 3. Overall calculation
         const diff = Math.max(0, targetPoints - currentPoints);
         const totalSec = rate > 0 ? diff / rate : 0;
 
-        // 4. Update individual Tier times
-        // Logic: How long does it take to reach just THIS tier's goal?
+        // Individual Tier Times
         tiers.forEach(t => {
-            const h = parseFloat(document.querySelector(`.have-in[data-tier="${t.id}"]`).value) || 0;
-            const w = parseFloat(document.querySelector(`.want-in[data-tier="${t.id}"]`).value) || 0;
-            
-            // To reach this tier's target, we need (Want - Have) * Multiplier
+            const h = parseFormattedNumber(document.querySelector(`.have-in[data-tier="${t.id}"]`).value);
+            const w = parseFormattedNumber(document.querySelector(`.want-in[data-tier="${t.id}"]`).value);
             const tierDiff = Math.max(0, (w - h) * t.mult);
             const tierSec = rate > 0 ? tierDiff / rate : 0;
-            
             const timeSpan = document.getElementById(`tier-time-${t.id}`);
+            
             if (tierSec <= 0 && w > 0) timeSpan.innerText = "Goal Reached!";
             else if (w === 0) timeSpan.innerText = "No Target";
             else timeSpan.innerText = "Time: " + formatHMS(tierSec);
         });
 
-        // 5. Global UI Updates
-        document.getElementById('pts-needed').innerText = diff.toLocaleString();
-        document.getElementById('out-total-pts').innerText = targetPoints.toLocaleString();
-        
-        document.getElementById('out-s').innerText = totalSec.toLocaleString(undefined, {maximumFractionDigits: 1});
-        document.getElementById('out-m').innerText = (totalSec / 60).toLocaleString(undefined, {maximumFractionDigits: 1});
-        document.getElementById('out-h').innerText = (totalSec / 3600).toLocaleString(undefined, {maximumFractionDigits: 1});
-        document.getElementById('out-d').innerText = (totalSec / 86400).toLocaleString(undefined, {maximumFractionDigits: 1});
+        // Global UI
+        document.getElementById('pts-needed').innerText = formatWithCommas(diff);
+        document.getElementById('out-total-pts').innerText = formatWithCommas(targetPoints);
+        document.getElementById('out-s').innerText = totalSec.toLocaleString('en-US', {maximumFractionDigits: 1});
+        document.getElementById('out-m').innerText = (totalSec / 60).toLocaleString('en-US', {maximumFractionDigits: 1});
+        document.getElementById('out-h').innerText = (totalSec / 3600).toLocaleString('en-US', {maximumFractionDigits: 1});
+        document.getElementById('out-d').innerText = (totalSec / 86400).toLocaleString('en-US', {maximumFractionDigits: 1});
         document.getElementById('hms-needed').innerText = formatHMS(totalSec);
 
-        // Date Prediction
         if (totalSec > 0) {
-            const doneDate = new Date(new Date().getTime() + (totalSec * 1000));
+            const doneDate = new Date(Date.now() + (totalSec * 1000));
             document.getElementById('done-by').innerText = formatCustomDate(doneDate);
         } else {
             document.getElementById('done-by').innerText = targetPoints > 0 ? "GOAL REACHED!" : "--/--/-- - --:--pm";
         }
     }
 
-    // Initial run
     calculate();
 </script>
-
 </body>
 </html>
