@@ -192,7 +192,7 @@
     <div class="top-bar">
         <div class="stat-card">
             <label>Points / Sec (Rate)</label>
-            <input type="text" id="rate" value="200" oninput="handleInput(this)">
+            <input type="text" id="rate" value="350" oninput="handleInput(this)">
         </div>
         <div class="stat-card">
             <label>Real Points Needed</label>
@@ -221,58 +221,55 @@
 </div>
 
 <script>
-    const tiers = [
-        { id: 1, mult: 1, h: 50000, w: 100000 },
-        { id: 2, mult: 5, h: 5000, w: 0 },
-        { id: 3, mult: 25, h: 15000, w: 50000 },
-        { id: 4, mult: 125, h: 1000, w: 4000 },
-        { id: 5, mult: 625, h: 1000, w: 4000 },
-        { id: 6, mult: 3125, h: 200, w: 2000 },
-        { id: 7, mult: 15625, h: 100, w: 1000 }
+
+    const defaultTiers = [
+        { id: 1, mult: 1, h: 0, w: 100000 },
+        { id: 2, mult: 5, h: 0, w: 15000 },
+        { id: 3, mult: 25, h: 0, w: 200000 },
+        { id: 4, mult: 125, h: 0, w: 4000 },
+        { id: 5, mult: 625, h: 0, w: 80000 },
+        { id: 6, mult: 3125, h: 0, w: 956 },
+        { id: 7, mult: 15625, h: 0, w: 5000 }
     ];
 
-    // Number Formatting Helpers
     function formatWithCommas(n) {
         return n.toLocaleString('en-US');
     }
 
     function parseFormattedNumber(s) {
-        return parseFloat(s.replace(/,/g, '')) || 0;
+        if (!s) return 0;
+        return parseFloat(String(s).replace(/,/g, '')) || 0;
     }
 
-    // Input Handler: Formats as you type
     function handleInput(el) {
         let cursorPosition = el.selectionStart;
         let originalLength = el.value.length;
-        
         let rawValue = el.value.replace(/[^0-9]/g, '');
-        if (rawValue === "") {
-            el.value = "";
-        } else {
-            el.value = parseInt(rawValue).toLocaleString('en-US');
-        }
+        
+        if (rawValue === "") el.value = "";
+        else el.value = parseInt(rawValue).toLocaleString('en-US');
 
-        // Keep cursor position stable
         let newLength = el.value.length;
         el.setSelectionRange(cursorPosition + (newLength - originalLength), cursorPosition + (newLength - originalLength));
         
         calculate();
+        saveData(); 
     }
 
-    // Build the Grid
+    
     const container = document.getElementById('tier-container');
-    tiers.forEach(t => {
+    defaultTiers.forEach(t => {
         container.innerHTML += `
             <div class="tier-card">
                 <div class="tier-title">TIER ${t.id} <span>Value: ${formatWithCommas(t.mult)}</span></div>
                 <div class="input-group">
                     <div class="field-box">
                         <label>Have</label>
-                        <input type="text" class="have-in" data-tier="${t.id}" data-mult="${t.mult}" value="${formatWithCommas(t.h)}" oninput="handleInput(this)">
+                        <input type="text" class="have-in" id="h-${t.id}" data-tier="${t.id}" data-mult="${t.mult}" value="${formatWithCommas(t.h)}" oninput="handleInput(this)">
                     </div>
                     <div class="field-box">
                         <label>Want</label>
-                        <input type="text" class="want-in" data-tier="${t.id}" data-mult="${t.mult}" value="${formatWithCommas(t.w)}" oninput="handleInput(this)">
+                        <input type="text" class="want-in" id="w-${t.id}" data-tier="${t.id}" data-mult="${t.mult}" value="${formatWithCommas(t.w)}" oninput="handleInput(this)">
                     </div>
                 </div>
                 <div class="tier-time" id="tier-time-${t.id}">Time: 0s</div>
@@ -319,9 +316,9 @@
         const totalSec = rate > 0 ? diff / rate : 0;
 
         // Individual Tier Times
-        tiers.forEach(t => {
-            const h = parseFormattedNumber(document.querySelector(`.have-in[data-tier="${t.id}"]`).value);
-            const w = parseFormattedNumber(document.querySelector(`.want-in[data-tier="${t.id}"]`).value);
+        defaultTiers.forEach(t => {
+            const h = parseFormattedNumber(document.getElementById(`h-${t.id}`).value);
+            const w = parseFormattedNumber(document.getElementById(`w-${t.id}`).value);
             const tierDiff = Math.max(0, (w - h) * t.mult);
             const tierSec = rate > 0 ? tierDiff / rate : 0;
             const timeSpan = document.getElementById(`tier-time-${t.id}`);
@@ -348,7 +345,39 @@
         }
     }
 
-    calculate();
+    // SPEICHER-FUNKTIONEN
+    function saveData() {
+        const data = {
+            rate: document.getElementById('rate').value,
+            tiers: []
+        };
+        defaultTiers.forEach(t => {
+            data.tiers.push({
+                id: t.id,
+                h: document.getElementById(`h-${t.id}`).value,
+                w: document.getElementById(`w-${t.id}`).value
+            });
+        });
+        localStorage.setItem('factoryCalcData', JSON.stringify(data));
+    }
+
+    function loadData() {
+        const saved = localStorage.getItem('factoryCalcData');
+        if (saved) {
+            const data = JSON.parse(saved);
+            document.getElementById('rate').value = data.rate;
+            data.tiers.forEach(t => {
+                const hEl = document.getElementById(`h-${t.id}`);
+                const wEl = document.getElementById(`w-${t.id}`);
+                if (hEl) hEl.value = t.h;
+                if (wEl) wEl.value = t.w;
+            });
+        }
+        calculate();
+    }
+
+
+    window.onload = loadData;
 </script>
 </body>
 </html>
