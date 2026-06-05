@@ -22,27 +22,41 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
             margin: 0;
         }
 
         .container { max-width: 1100px; width: 100%; }
 
+        .lang-selector {
+            align-self: flex-end;
+            margin-bottom: 15px;
+        }
+
+        select {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         h1 {
             text-align: center;
             color: var(--blue);
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             margin-bottom: 30px;
-            font-size: 2rem;
+            font-size: 1.5rem;
             text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
         }
 
         .top-bar {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         .stat-card {
@@ -51,15 +65,14 @@
             border: 1px solid rgba(56, 189, 248, 0.3);
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
         .stat-card label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--blue);
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             text-transform: uppercase;
         }
 
@@ -67,19 +80,18 @@
             background: rgba(0,0,0,0.3);
             border: 1px solid var(--border);
             color: var(--green);
-            font-size: 2rem;
+            font-size: 1.8rem;
             text-align: center;
             width: 90%;
             border-radius: 8px;
             outline: none;
-            padding: 5px;
         }
 
         .tier-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .tier-card {
@@ -88,22 +100,20 @@
             padding: 15px;
             border: 1px solid var(--border);
             border-bottom: 3px solid var(--pink);
-            transition: all 0.3s ease;
         }
-
-        .tier-card:hover { border-color: var(--blue); transform: translateY(-3px); }
 
         .tier-title {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             font-weight: bold;
             margin-bottom: 15px;
             color: var(--pink);
         }
 
-        .tier-title span { color: #6b7280; font-size: 0.75rem; }
+        .tier-title .tier-name { font-size: 1.1rem; }
+        .tier-title .tier-info { color: #6b7280; font-size: 0.7rem; font-weight: normal; margin-top: 2px; }
 
-        .input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
         .field-box label {
             display: block;
@@ -121,6 +131,7 @@
             padding: 8px;
             border-radius: 6px;
             text-align: center;
+            font-size: 0.9rem;
         }
 
         .tier-time {
@@ -133,31 +144,77 @@
             font-weight: bold;
         }
 
+        .strategy-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .strategy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .strategy-header h3 { margin: 0; color: var(--blue); font-size: 1rem; text-transform: uppercase; }
+
+        .perc-btn-group { display: flex; gap: 5px; }
+
+        .perc-btn {
+            background: #060912;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .perc-btn.active {
+            border-color: var(--pink);
+            color: var(--pink);
+            background: rgba(244, 114, 182, 0.1);
+        }
+
+        .strategy-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .strategy-table th { color: var(--blue); text-align: left; padding: 8px; border-bottom: 1px solid var(--border); }
+        .strategy-table td { padding: 8px; border-bottom: 1px solid #1f2937; }
+        .strategy-table tr:last-child td { border-bottom: none; }
+
         .summary-box {
             background: linear-gradient(145deg, #111827, #0f172a);
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             border: 1px solid var(--green);
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            box-shadow: 0 0 30px rgba(74, 222, 128, 0.1);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .res-column h3 {
             margin-top: 0;
             color: var(--blue);
-            font-size: 1rem;
+            font-size: 0.9rem;
             border-bottom: 1px solid #1f2937;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
             text-transform: uppercase;
         }
 
         .res-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-size: 1rem;
         }
 
         .res-label { color: #9ca3af; }
@@ -170,105 +227,202 @@
             justify-content: center;
             background: rgba(74, 222, 128, 0.03);
             border-radius: 12px;
-            padding: 20px;
+            padding: 15px;
         }
 
         .done-text {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: var(--green);
-            margin-top: 12px;
+            margin-top: 10px;
             font-weight: bold;
-            letter-spacing: 1px;
         }
 
-        .target-subtext { font-size: 0.75rem; color: #4b5563; margin-top: 10px; }
+        .target-subtext { font-size: 0.7rem; color: #4b5563; margin-top: 8px; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.2rem; }
+            .stat-card input { font-size: 1.5rem; }
+            .strategy-table { font-size: 0.75rem; }
+            .strategy-table th, .strategy-table td { padding: 5px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <div class="lang-selector">
+        <select id="langSelect" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+            <option value="pl">Polski</option>
+            <option value="ru">Русский</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="pt">Português</option>
+        </select>
+    </div>
+
     <h1>Factory Calculator by IDoNotBelieveInNames</h1>
 
     <div class="top-bar">
         <div class="stat-card">
-            <label>Points / Sec (Rate)</label>
+            <label id="lbl-rate">Points / Sec (Rate)</label>
             <input type="text" id="rate" value="350" oninput="handleInput(this)">
         </div>
         <div class="stat-card">
-            <label>Real Points Needed</label>
-            <div id="pts-needed" style="font-size: 2rem; font-weight: bold; color: var(--pink); margin-top: 5px;">0</div>
+            <label id="lbl-needed">Real Points Needed</label>
+            <div id="pts-needed" style="font-size: 1.8rem; font-weight: bold; color: var(--pink); margin-top: 5px;">0</div>
         </div>
     </div>
 
     <div class="tier-grid" id="tier-container"></div>
 
+    <div class="strategy-card">
+        <div class="strategy-header">
+            <h3 id="lbl-strat-title">Bulk Merger Strategy</h3>
+            <div class="perc-btn-group">
+                <button class="perc-btn active" onclick="setPerc(10)">10%</button>
+                <button class="perc-btn" onclick="setPerc(20)">20%</button>
+                <button class="perc-btn" onclick="setPerc(50)">50%</button>
+            </div>
+        </div>
+        <div style="overflow-x: auto;">
+            <table class="strategy-table">
+                <thead>
+                    <tr>
+                        <th id="lbl-th-tier">Target Tier</th>
+                        <th id="lbl-th-merge">Merge Previous Tier at...</th>
+                        <th id="lbl-th-result">Estimated Result</th>
+                    </tr>
+                </thead>
+                <tbody id="strategy-body"></tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="summary-box">
         <div class="res-column">
-            <h3>TIME ESTIMATION</h3>
-            <div class="res-row"><span class="res-label">Seconds:</span> <span class="res-val" id="out-s">0</span></div>
-            <div class="res-row"><span class="res-label">Minutes:</span> <span class="res-val" id="out-m">0</span></div>
-            <div class="res-row"><span class="res-label">Hours:</span> <span class="res-val" id="out-h">0</span></div>
-            <div class="res-row"><span class="res-label">Days:</span> <span class="res-val" id="out-d">0</span></div>
+            <h3 id="lbl-estimation">Time Estimation</h3>
+            <div class="res-row"><span class="res-label" id="lbl-s">Seconds:</span> <span class="res-val" id="out-s">0</span></div>
+            <div class="res-row"><span class="res-label" id="lbl-m">Minutes:</span> <span class="res-val" id="out-m">0</span></div>
+            <div class="res-row"><span class="res-label" id="lbl-h">Hours:</span> <span class="res-val" id="out-h">0</span></div>
+            <div class="res-row"><span class="res-label" id="lbl-d">Days:</span> <span class="res-val" id="out-d">0</span></div>
         </div>
 
         <div class="res-column big-result">
-            <h3>COMPLETION DATE</h3>
-            <div class="res-label">Time Needed: <span id="hms-needed" style="color: white; font-weight: bold;">00:00:00</span></div>
-            <div class="done-text" id="done-by">--/--/-- - --:--pm</div>
-            <div class="target-subtext">Total Target Points: <span id="out-total-pts">0</span></div>
+            <h3 id="lbl-completion">Completion Date</h3>
+            <div class="res-label"><span id="lbl-time-req">Time Needed:</span> <span id="hms-needed" style="color: white; font-weight: bold;">00:00:00</span></div>
+            <div class="done-text" id="done-by">--/--/-- - --:--</div>
+            <div class="target-subtext"><span id="lbl-total-pts">Total Target Points:</span> <span id="out-total-pts">0</span></div>
         </div>
     </div>
 </div>
 
 <script>
+    const translations = {
+        en: {
+            locale: "en-US", rate: "Points / Sec (Rate)", needed: "Real Points Needed", have: "Have", want: "Want", estimation: "Time Estimation",
+            s: "Seconds:", m: "Minutes:", h: "Hours:", d: "Days:", completion: "Completion Date", time_req: "Time Needed:",
+            total: "Total Target Points:", goal: "Goal Reached!", no_target: "No Target", time_lbl: "Time: ",
+            strat_title: "Bulk Merger Strategy", th_tier: "Target Tier", th_merge: "Merge Previous at...", th_result: "Est. Result"
+        },
+        de: {
+            locale: "de-DE", rate: "Punkte / Sek (Rate)", needed: "Benötigte Punkte", have: "Besitz", want: "Ziel", estimation: "Zeit-Schätzung",
+            s: "Sekunden:", m: "Minuten:", h: "Stunden:", d: "Tage:", completion: "Fertigstellung", time_req: "Dauer:",
+            total: "Gesamtpunkte Ziel:", goal: "Ziel erreicht!", no_target: "Kein Ziel", time_lbl: "Zeit: ",
+            strat_title: "Bulk-Merge Strategie", th_tier: "Ziel Tier", th_merge: "Vorheriges mergen ab...", th_result: "Ergebnis ca."
+        },
+        fr: {
+            locale: "fr-FR", rate: "Points / Sec (Taux)", needed: "Points Réels Requis", have: "Possédé", want: "Voulu", estimation: "Estimation du Temps",
+            s: "Secondes:", m: "Minutes:", h: "Heures:", d: "Jours:", completion: "Date d'achèvement", time_req: "Temps Requis:",
+            total: "Points Cibles Totaux:", goal: "Objectif Atteint!", no_target: "Pas de cible", time_lbl: "Temps: ",
+            strat_title: "Stratégie de Fusion", th_tier: "Tier Cible", th_merge: "Fusionner préc. à...", th_result: "Résultat Est."
+        },
+        es: {
+            locale: "es-ES", rate: "Puntos / Seg (Tasa)", needed: "Puntos Reales Necesarios", have: "Tengo", want: "Quiero", estimation: "Estimación de Tiempo",
+            s: "Segundos:", m: "Minutos:", h: "Horas:", d: "Días:", completion: "Fecha de Finalización", time_req: "Tiempo Necesario:",
+            total: "Puntos Totales del Objetivo:", goal: "¡Meta Alcanzada!", no_target: "Sin objetivo", time_lbl: "Tiempo: ",
+            strat_title: "Estrategia de Fusión", th_tier: "Tier Objetivo", th_merge: "Fusionar anterior en...", th_result: "Resultado Est."
+        },
+        pl: {
+            locale: "pl-PL", rate: "Punkty / Sek (Tempo)", needed: "Rzeczywiste Punkty", have: "Posiadam", want: "Chcę", estimation: "Szacowany Czas",
+            s: "Sekundy:", m: "Minuty:", h: "Godziny:", d: "Dni:", completion: "Data Ukończenia", time_req: "Potrzebny Czas:",
+            total: "Łączna Liczba Punktów:", goal: "Cel Osiągnięty!", no_target: "Brak celu", time_lbl: "Czas: ",
+            strat_title: "Strategia Łączenia", th_tier: "Tier Docelowy", th_merge: "Połącz poprzedni przy...", th_result: "Wynik ok."
+        },
+        ru: {
+            locale: "ru-RU", rate: "Очков / сек (Скорость)", needed: "Нужно очков", have: "Есть", want: "Нужно", estimation: "Оценка времени",
+            s: "Секунды:", m: "Минуты:", h: "Часы:", d: "Дни:", completion: "Дата завершения", time_req: "Нужное время:",
+            total: "Всего целевых очков:", goal: "Цель достигнута!", no_target: "Нет цели", time_lbl: "Время: ",
+            strat_title: "Стратегия Слияния", th_tier: "Целевой Тир", th_merge: "Сливать пред. при...", th_result: "Прим. результат"
+        },
+        id: {
+            locale: "id-ID", rate: "Poin / Detik (Laju)", needed: "Poin Dibutuhkan", have: "Punya", want: "Ingin", estimation: "Estimasi Waktu",
+            s: "Detik:", m: "Menit:", h: "Jam:", d: "Hari:", completion: "Tanggal Selesai", time_req: "Waktu yang Dibutuhkan:",
+            total: "Total Poin Target:", goal: "Target Tercapai!", no_target: "Tidak ada target", time_lbl: "Waktu: ",
+            strat_title: "Strategi Penggabungan", th_tier: "Tier Target", th_merge: "Gabung sebelumnya di...", th_result: "Hasil Est."
+        },
+        pt: {
+            locale: "pt-PT", rate: "Pontos / Seg (Taxa)", needed: "Pontos Necessários", have: "Possuo", want: "Quero", estimation: "Estimativa de Tempo",
+            s: "Segundos:", m: "Minutos:", h: "Horas:", d: "Dias:", completion: "Data de Conclusão", time_req: "Tempo Necessário:",
+            total: "Total de Pontos do Objetivo:", goal: "Meta Atingida!", no_target: "Sem alvo", time_lbl: "Tempo: ",
+            strat_title: "Estratégia de Fusão", th_tier: "Tier Alvo", th_merge: "Fundir anterior em...", th_result: "Resultado Est."
+        }
+    };
 
     const defaultTiers = [
-        { id: 1, mult: 1, h: 0, w: 100000 },
-        { id: 2, mult: 5, h: 0, w: 15000 },
-        { id: 3, mult: 25, h: 0, w: 200000 },
-        { id: 4, mult: 125, h: 0, w: 4000 },
-        { id: 5, mult: 625, h: 0, w: 80000 },
-        { id: 6, mult: 3125, h: 0, w: 956 },
-        { id: 7, mult: 15625, h: 0, w: 5000 }
+        { id: 1, mult: 1, h: 0, w: 100000, max: "100k", sBase: 111120 },
+        { id: 2, mult: 5, h: 0, w: 15000, max: "15k", sBase: 16670 },
+        { id: 3, mult: 25, h: 0, w: 200000, max: "200k", sBase: 222230 },
+        { id: 4, mult: 125, h: 0, w: 4000, max: "4k", sBase: 4450 },
+        { id: 5, mult: 625, h: 0, w: 80000, max: "80k", sBase: 88890 },
+        { id: 6, mult: 3125, h: 0, w: 956, max: "956", sBase: 1062 },
+        { id: 7, mult: 15625, h: 0, w: 10000, max: "10k+ (Unknown)" }
     ];
 
-    function formatWithCommas(n) {
-        return n.toLocaleString('en-US');
-    }
+    let currentLang = 'en';
+    let currentPerc = 10;
 
-    function parseFormattedNumber(s) {
-        if (!s) return 0;
-        return parseFloat(String(s).replace(/,/g, '')) || 0;
+    function formatWithCommas(n) { return n.toLocaleString('en-US'); }
+    function parseFormattedNumber(s) { return parseFloat(String(s).replace(/,/g, '')) || 0; }
+
+    function setPerc(p) {
+        currentPerc = p;
+        document.querySelectorAll('.perc-btn').forEach(btn => {
+            btn.classList.toggle('active', parseInt(btn.innerText) === p);
+        });
+        updateStrategy();
+        saveData();
     }
 
     function handleInput(el) {
         let cursorPosition = el.selectionStart;
         let originalLength = el.value.length;
         let rawValue = el.value.replace(/[^0-9]/g, '');
-        
         if (rawValue === "") el.value = "";
         else el.value = parseInt(rawValue).toLocaleString('en-US');
-
         let newLength = el.value.length;
         el.setSelectionRange(cursorPosition + (newLength - originalLength), cursorPosition + (newLength - originalLength));
-        
         calculate();
-        saveData(); 
+        saveData();
     }
 
-    
     const container = document.getElementById('tier-container');
     defaultTiers.forEach(t => {
         container.innerHTML += `
             <div class="tier-card">
-                <div class="tier-title">TIER ${t.id} <span>Value: ${formatWithCommas(t.mult)}</span></div>
+                <div class="tier-title">
+                    <span class="tier-name">TIER ${t.id} <small>(${t.max ? 'Max: ' + t.max : ''})</small></span>
+                    <span class="tier-info">Value: ${formatWithCommas(t.mult)}</span>
+                </div>
                 <div class="input-group">
                     <div class="field-box">
-                        <label>Have</label>
+                        <label class="lbl-have">Have</label>
                         <input type="text" class="have-in" id="h-${t.id}" data-tier="${t.id}" data-mult="${t.mult}" value="${formatWithCommas(t.h)}" oninput="handleInput(this)">
                     </div>
                     <div class="field-box">
-                        <label>Want</label>
+                        <label class="lbl-want">Want</label>
                         <input type="text" class="want-in" id="w-${t.id}" data-tier="${t.id}" data-mult="${t.mult}" value="${formatWithCommas(t.w)}" oninput="handleInput(this)">
                     </div>
                 </div>
@@ -277,15 +431,47 @@
         `;
     });
 
-    function formatCustomDate(date) {
-        const d = String(date.getDate()).padStart(2, '0');
-        const m = String(date.getMonth() + 1).padStart(2, '0');
-        const y = String(date.getFullYear()).slice(-2);
-        let hours = date.getHours();
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const ampm = hours >= 12 ? 'pm' : 'am';
-        hours = hours % 12 || 12;
-        return `${d}/${m}/${y} - ${hours}:${minutes}${ampm}`;
+    function updateStrategy() {
+        const body = document.getElementById('strategy-body');
+        body.innerHTML = '';
+        for(let i=0; i < defaultTiers.length - 1; i++) {
+            const tier = defaultTiers[i];
+            const nextTier = defaultTiers[i+1];
+            // Calc threshold: If 10% is base, 20% needs half as much base units to get same result
+            const threshold = (tier.sBase * 10) / currentPerc;
+            const result = Math.floor((threshold * (currentPerc/100)) / 5); // Merging into next tier (requires 5)
+            
+            body.innerHTML += `
+                <tr>
+                    <td>Tier ${nextTier.id}</td>
+                    <td style="color: var(--pink); font-weight: bold;">${formatWithCommas(Math.floor(threshold))} (T${tier.id})</td>
+                    <td style="color: var(--green);">+${formatWithCommas(result)} (T${nextTier.id})</td>
+                </tr>
+            `;
+        }
+    }
+
+    function changeLanguage() {
+        currentLang = document.getElementById('langSelect').value;
+        const t = translations[currentLang];
+        document.getElementById('lbl-rate').innerText = t.rate;
+        document.getElementById('lbl-needed').innerText = t.needed;
+        document.getElementById('lbl-estimation').innerText = t.estimation;
+        document.getElementById('lbl-s').innerText = t.s;
+        document.getElementById('lbl-m').innerText = t.m;
+        document.getElementById('lbl-h').innerText = t.h;
+        document.getElementById('lbl-d').innerText = t.d;
+        document.getElementById('lbl-completion').innerText = t.completion;
+        document.getElementById('lbl-time-req').innerText = t.time_req;
+        document.getElementById('lbl-total-pts').innerText = t.total;
+        document.getElementById('lbl-strat-title').innerText = t.strat_title;
+        document.getElementById('lbl-th-tier').innerText = t.th_tier;
+        document.getElementById('lbl-th-merge').innerText = t.th_merge;
+        document.getElementById('lbl-th-result').innerText = t.th_result;
+        document.querySelectorAll('.lbl-have').forEach(el => el.innerText = t.have);
+        document.querySelectorAll('.lbl-want').forEach(el => el.innerText = t.want);
+        calculate();
+        saveData();
     }
 
     function formatHMS(totalSeconds) {
@@ -298,37 +484,27 @@
 
     function calculate() {
         const rate = parseFormattedNumber(document.getElementById('rate').value);
+        const t = translations[currentLang];
         let currentPoints = 0;
         let targetPoints = 0;
-
-        const haveInputs = document.querySelectorAll('.have-in');
-        const wantInputs = document.querySelectorAll('.want-in');
-
-        haveInputs.forEach(input => {
+        document.querySelectorAll('.have-in').forEach(input => {
             currentPoints += parseFormattedNumber(input.value) * parseFloat(input.dataset.mult);
         });
-
-        wantInputs.forEach(input => {
+        document.querySelectorAll('.want-in').forEach(input => {
             targetPoints += parseFormattedNumber(input.value) * parseFloat(input.dataset.mult);
         });
-
         const diff = Math.max(0, targetPoints - currentPoints);
         const totalSec = rate > 0 ? diff / rate : 0;
-
-        // Individual Tier Times
-        defaultTiers.forEach(t => {
-            const h = parseFormattedNumber(document.getElementById(`h-${t.id}`).value);
-            const w = parseFormattedNumber(document.getElementById(`w-${t.id}`).value);
-            const tierDiff = Math.max(0, (w - h) * t.mult);
+        defaultTiers.forEach(tier => {
+            const h = parseFormattedNumber(document.getElementById(`h-${tier.id}`).value);
+            const w = parseFormattedNumber(document.getElementById(`w-${tier.id}`).value);
+            const tierDiff = Math.max(0, (w - h) * tier.mult);
             const tierSec = rate > 0 ? tierDiff / rate : 0;
-            const timeSpan = document.getElementById(`tier-time-${t.id}`);
-            
-            if (tierSec <= 0 && w > 0) timeSpan.innerText = "Goal Reached!";
-            else if (w === 0) timeSpan.innerText = "No Target";
-            else timeSpan.innerText = "Time: " + formatHMS(tierSec);
+            const timeSpan = document.getElementById(`tier-time-${tier.id}`);
+            if (tierSec <= 0 && w > 0) timeSpan.innerText = t.goal;
+            else if (w === 0) timeSpan.innerText = t.no_target;
+            else timeSpan.innerText = t.time_lbl + formatHMS(tierSec);
         });
-
-        // Global UI
         document.getElementById('pts-needed').innerText = formatWithCommas(diff);
         document.getElementById('out-total-pts').innerText = formatWithCommas(targetPoints);
         document.getElementById('out-s').innerText = totalSec.toLocaleString('en-US', {maximumFractionDigits: 1});
@@ -336,46 +512,40 @@
         document.getElementById('out-h').innerText = (totalSec / 3600).toLocaleString('en-US', {maximumFractionDigits: 1});
         document.getElementById('out-d').innerText = (totalSec / 86400).toLocaleString('en-US', {maximumFractionDigits: 1});
         document.getElementById('hms-needed').innerText = formatHMS(totalSec);
-
         if (totalSec > 0) {
             const doneDate = new Date(Date.now() + (totalSec * 1000));
-            document.getElementById('done-by').innerText = formatCustomDate(doneDate);
+            document.getElementById('done-by').innerText = doneDate.toLocaleString(t.locale);
         } else {
-            document.getElementById('done-by').innerText = targetPoints > 0 ? "GOAL REACHED!" : "--/--/-- - --:--pm";
+            document.getElementById('done-by').innerText = targetPoints > 0 ? t.goal : "--/--/-- - --:--";
         }
     }
 
-    // SPEICHER-FUNKTIONEN
     function saveData() {
-        const data = {
-            rate: document.getElementById('rate').value,
-            tiers: []
-        };
+        const data = { rate: document.getElementById('rate').value, lang: currentLang, perc: currentPerc, tiers: [] };
         defaultTiers.forEach(t => {
-            data.tiers.push({
-                id: t.id,
-                h: document.getElementById(`h-${t.id}`).value,
-                w: document.getElementById(`w-${t.id}`).value
-            });
+            data.tiers.push({ id: t.id, h: document.getElementById(`h-${t.id}`).value, w: document.getElementById(`w-${t.id}`).value });
         });
-        localStorage.setItem('factoryCalcData', JSON.stringify(data));
+        localStorage.setItem('factoryCalcData_v3', JSON.stringify(data));
     }
 
     function loadData() {
-        const saved = localStorage.getItem('factoryCalcData');
+        const saved = localStorage.getItem('factoryCalcData_v3');
         if (saved) {
             const data = JSON.parse(saved);
             document.getElementById('rate').value = data.rate;
+            if(data.lang) { document.getElementById('langSelect').value = data.lang; currentLang = data.lang; }
+            if(data.perc) { setPerc(data.perc); } else { setPerc(10); }
             data.tiers.forEach(t => {
                 const hEl = document.getElementById(`h-${t.id}`);
                 const wEl = document.getElementById(`w-${t.id}`);
                 if (hEl) hEl.value = t.h;
                 if (wEl) wEl.value = t.w;
             });
+        } else {
+            setPerc(10);
         }
-        calculate();
+        changeLanguage();
     }
-
 
     window.onload = loadData;
 </script>
