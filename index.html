@@ -189,7 +189,6 @@
 
         .strategy-table th { color: var(--blue); text-align: left; padding: 8px; border-bottom: 1px solid var(--border); }
         .strategy-table td { padding: 8px; border-bottom: 1px solid #1f2937; }
-        .strategy-table tr:last-child td { border-bottom: none; }
 
         .summary-box {
             background: linear-gradient(145deg, #111827, #0f172a);
@@ -243,7 +242,6 @@
             h1 { font-size: 1.2rem; }
             .stat-card input { font-size: 1.5rem; }
             .strategy-table { font-size: 0.75rem; }
-            .strategy-table th, .strategy-table td { padding: 5px; }
         }
     </style>
 </head>
@@ -282,7 +280,7 @@
         <div class="strategy-header">
             <h3 id="lbl-strat-title">Bulk Merger Strategy</h3>
             <div class="perc-btn-group">
-                <button class="perc-btn active" onclick="setPerc(10)">10%</button>
+                <button class="perc-btn" onclick="setPerc(10)">10%</button>
                 <button class="perc-btn" onclick="setPerc(25)">25%</button>
                 <button class="perc-btn" onclick="setPerc(50)">50%</button>
             </div>
@@ -292,8 +290,8 @@
                 <thead>
                     <tr>
                         <th id="lbl-th-tier">Target Tier</th>
-                        <th id="lbl-th-merge">Merge Previous Tier at...</th>
-                        <th id="lbl-th-result">Estimated Result</th>
+                        <th id="lbl-th-merge">Merge Previous at... (To keep Hold)</th>
+                        <th id="lbl-th-result">Est. Units Gained</th>
                     </tr>
                 </thead>
                 <tbody id="strategy-body"></tbody>
@@ -321,64 +319,24 @@
 
 <script>
     const translations = {
-        en: {
-            locale: "en-US", rate: "Points / Sec (Rate)", needed: "Real Points Needed", have: "Have", want: "Want", estimation: "Time Estimation",
-            s: "Seconds:", m: "Minutes:", h: "Hours:", d: "Days:", completion: "Completion Date", time_req: "Time Needed:",
-            total: "Total Target Points:", goal: "Goal Reached!", no_target: "No Target", time_lbl: "Time: ",
-            strat_title: "Bulk Merger Strategy", th_tier: "Target Tier", th_merge: "Merge Previous at...", th_result: "Est. Result"
-        },
-        de: {
-            locale: "de-DE", rate: "Punkte / Sek (Rate)", needed: "Benötigte Punkte", have: "Besitz", want: "Ziel", estimation: "Zeit-Schätzung",
-            s: "Sekunden:", m: "Minuten:", h: "Stunden:", d: "Tage:", completion: "Fertigstellung", time_req: "Dauer:",
-            total: "Gesamtpunkte Ziel:", goal: "Ziel erreicht!", no_target: "Kein Ziel", time_lbl: "Zeit: ",
-            strat_title: "Bulk-Merge Strategie", th_tier: "Ziel Tier", th_merge: "Vorheriges mergen ab...", th_result: "Ergebnis ca."
-        },
-        fr: {
-            locale: "fr-FR", rate: "Points / Sec (Taux)", needed: "Points Réels Requis", have: "Possédé", want: "Voulu", estimation: "Estimation du Temps",
-            s: "Secondes:", m: "Minutes:", h: "Heures:", d: "Jours:", completion: "Date d'achèvement", time_req: "Temps Requis:",
-            total: "Points Cibles Totaux:", goal: "Objectif Atteint!", no_target: "Pas de cible", time_lbl: "Temps: ",
-            strat_title: "Stratégie de Fusion", th_tier: "Tier Cible", th_merge: "Fusionner préc. à...", th_result: "Résultat Est."
-        },
-        es: {
-            locale: "es-ES", rate: "Puntos / Seg (Tasa)", needed: "Puntos Reales Necesarios", have: "Tengo", want: "Quiero", estimation: "Estimación de Tiempo",
-            s: "Segundos:", m: "Minutos:", h: "Horas:", d: "Días:", completion: "Fecha de Finalización", time_req: "Tiempo Necesario:",
-            total: "Puntos Totales del Objetivo:", goal: "¡Meta Alcanzada!", no_target: "Sin objetivo", time_lbl: "Tiempo: ",
-            strat_title: "Estrategia de Fusión", th_tier: "Tier Objetivo", th_merge: "Fusionar anterior en...", th_result: "Resultado Est."
-        },
-        pl: {
-            locale: "pl-PL", rate: "Punkty / Sek (Tempo)", needed: "Rzeczywiste Punkty", have: "Posiadam", want: "Chcę", estimation: "Szacowany Czas",
-            s: "Sekundy:", m: "Minuty:", h: "Godziny:", d: "Dni:", completion: "Data Ukończenia", time_req: "Potrzebny Czas:",
-            total: "Łączna Liczba Punktów:", goal: "Cel Osiągnięty!", no_target: "Brak celu", time_lbl: "Czas: ",
-            strat_title: "Strategia Łączenia", th_tier: "Tier Docelowy", th_merge: "Połącz poprzedni przy...", th_result: "Wynik ok."
-        },
-        ru: {
-            locale: "ru-RU", rate: "Очков / сек (Скорость)", needed: "Нужно очков", have: "Есть", want: "Нужно", estimation: "Оценка времени",
-            s: "Секунды:", m: "Минуты:", h: "Часы:", d: "Дни:", completion: "Дата завершения", time_req: "Нужное время:",
-            total: "Всего целевых очков:", goal: "Цель достигнуta!", no_target: "Нет цели", time_lbl: "Время: ",
-            strat_title: "Стратегия Слияния", th_tier: "Целевой Тир", th_merge: "Сливать пред. при...", th_result: "Прим. результат"
-        },
-        id: {
-            locale: "id-ID", rate: "Poin / Detik (Laju)", needed: "Poin Dibutuhkan", have: "Punya", want: "Ingin", estimation: "Estimasi Waktu",
-            s: "Detik:", m: "Menit:", h: "Jam:", d: "Hari:", completion: "Tanggal Selesai", time_req: "Waktu yang Dibutuhkan:",
-            total: "Total Poin Target:", goal: "Target Tercapai!", no_target: "Tidak ada target", time_lbl: "Waktu: ",
-            strat_title: "Strategi Penggabungan", th_tier: "Tier Target", th_merge: "Gabung sebelumnya di...", th_result: "Hasil Est."
-        },
-        pt: {
-            locale: "pt-PT", rate: "Pontos / Seg (Taxa)", needed: "Pontos Necessários", have: "Possuo", want: "Quero", estimation: "Estimativa de Tempo",
-            s: "Segundos:", m: "Minutos:", h: "Horas:", d: "Dias:", completion: "Data de Conclusão", time_req: "Tempo Necessário:",
-            total: "Total de Pontos do Objetivo:", goal: "Meta Atingida!", no_target: "Sem alvo", time_lbl: "Tempo: ",
-            strat_title: "Estrategia de Fusão", th_tier: "Tier Alvo", th_merge: "Fundir anterior em...", th_result: "Resultado Est."
-        }
+        en: { locale: "en-US", rate: "Points / Sec (Rate)", needed: "Real Points Needed", have: "Have", want: "Want", estimation: "Time Estimation", s: "Seconds:", m: "Minutes:", h: "Hours:", d: "Days:", completion: "Completion Date", time_req: "Time Needed:", total: "Total Target Points:", goal: "Goal Reached!", no_target: "No Target", time_lbl: "Time: ", strat_title: "Bulk Merger Strategy", th_tier: "Target Tier", th_merge: "Merge Previous at...", th_result: "Est. Gained" },
+        de: { locale: "de-DE", rate: "Punkte / Sek (Rate)", needed: "Benötigte Punkte", have: "Besitz", want: "Ziel", estimation: "Zeit-Schätzung", s: "Sekunden:", m: "Minuten:", h: "Stunden:", d: "Tage:", completion: "Fertigstellung", time_req: "Dauer:", total: "Gesamtpunkte Ziel:", goal: "Ziel erreicht!", no_target: "Kein Ziel", time_lbl: "Zeit: ", strat_title: "Bulk-Merge Strategie", th_tier: "Ziel Tier", th_merge: "Mergen ab (für Bonus)...", th_result: "Gewinn ca." },
+        fr: { locale: "fr-FR", rate: "Points / Sec (Taux)", needed: "Points Réels Requis", have: "Possédé", want: "Voulu", estimation: "Estimation du Temps", s: "Secondes:", m: "Minutes:", h: "Heures:", d: "Jours:", completion: "Date d'achèvement", time_req: "Temps Requis:", total: "Points Cibles Totaux:", goal: "Objectif Atteint!", no_target: "Pas de cible", time_lbl: "Temps: ", strat_title: "Stratégie de Fusion", th_tier: "Tier Cible", th_merge: "Fusionner à...", th_result: "Gain Est." },
+        es: { locale: "es-ES", rate: "Puntos / Seg (Tasa)", needed: "Puntos Reales Necesarios", have: "Tengo", want: "Quiero", estimation: "Estimación de Tiempo", s: "Segundos:", m: "Minutos:", h: "Horas:", d: "Días:", completion: "Fecha de Finalización", time_req: "Tiempo Necesario:", total: "Puntos Totales del Objetivo:", goal: "¡Meta Alcanzada!", no_target: "Sin objetivo", time_lbl: "Tiempo: ", strat_title: "Estrategia de Fusión", th_tier: "Tier Objetivo", th_merge: "Fusionar en...", th_result: "Ganancia Est." },
+        pl: { locale: "pl-PL", rate: "Punkty / Sek (Tempo)", needed: "Rzeczywiste Punkty", have: "Posiadam", want: "Chcę", estimation: "Szacowany Czas", s: "Sekundy:", m: "Minuty:", h: "Godziny:", d: "Dni:", completion: "Data Ukończenia", time_req: "Potrzebny Czas:", total: "Łączna Liczba Punktów:", goal: "Cel Osiągnięty!", no_target: "Brak celu", time_lbl: "Czas: ", strat_title: "Strategia Łączenia", th_tier: "Tier Docelowy", th_merge: "Połącz przy...", th_result: "Zysk ok." },
+        ru: { locale: "ru-RU", rate: "Очков / сек (Скорость)", needed: "Нужно очков", have: "Есть", want: "Нужно", estimation: "Оценка времени", s: "Секунды:", m: "Минуты:", h: "Часы:", d: "Дни:", completion: "Дата завершения", time_req: "Нужное время:", total: "Всего целевых очков:", goal: "Цель достигнута!", no_target: "Нет цели", time_lbl: "Время: ", strat_title: "Стратегия Слияния", th_tier: "Целевой Тир", th_merge: "Сливать при...", th_result: "Прирост" },
+        id: { locale: "id-ID", rate: "Poin / Detik (Laju)", needed: "Poin Dibutuhkan", have: "Punya", want: "Ingin", estimation: "Estimasi Waktu", s: "Detik:", m: "Menit:", h: "Jam:", d: "Hari:", completion: "Tanggal Selesai", time_req: "Waktu yang Dibutuhkan:", total: "Total Poin Target:", goal: "Target Tercapai!", no_target: "Tidak ada target", time_lbl: "Waktu: ", strat_title: "Strategi Penggabungan", th_tier: "Tier Target", th_merge: "Gabung di...", th_result: "Hasil Est." },
+        pt: { locale: "pt-PT", rate: "Pontos / Seg (Taxa)", needed: "Pontos Necessários", have: "Possuo", want: "Quero", estimation: "Estimativa de Tempo", s: "Segundos:", m: "Minutos:", h: "Horas:", d: "Dias:", completion: "Data de Conclusão", time_req: "Tempo Necessário:", total: "Total de Pontos do Objetivo:", goal: "Meta Atingida!", no_target: "Sem alvo", time_lbl: "Tempo: ", strat_title: "Estratégia de Fusão", th_tier: "Tier Alvo", th_merge: "Fundir em...", th_result: "Ganho Est." }
     };
 
     const defaultTiers = [
-        { id: 1, mult: 1, h: 0, w: 100000, max: "100k", sBase: 111120 },
-        { id: 2, mult: 5, h: 0, w: 15000, max: "15k", sBase: 16670 },
-        { id: 3, mult: 25, h: 0, w: 200000, max: "200k", sBase: 222230 },
-        { id: 4, mult: 125, h: 0, w: 4000, max: "4k", sBase: 4450 },
-        { id: 5, mult: 625, h: 0, w: 80000, max: "80k", sBase: 88890 },
-        { id: 6, mult: 3125, h: 0, w: 956, max: "956", sBase: 1062 },
-        { id: 7, mult: 15625, h: 0, w: 10000, max: "10k+ (Unknown)" }
+        { id: 1, mult: 1, h: 0, w: 100000, max: "100k", hold: 100000 },
+        { id: 2, mult: 5, h: 0, w: 15000, max: "15k", hold: 15000 },
+        { id: 3, mult: 25, h: 0, w: 200000, max: "200k", hold: 200000 },
+        { id: 4, mult: 125, h: 0, w: 4000, max: "4k", hold: 4000 },
+        { id: 5, mult: 625, h: 0, w: 80000, max: "80k", hold: 80000 },
+        { id: 6, mult: 3125, h: 0, w: 956, max: "956", hold: 956 },
+        { id: 7, mult: 15625, h: 0, w: 5000, max: "10k+ (Unknown)", hold: 0 }
     ];
 
     let currentLang = 'en';
@@ -434,17 +392,22 @@
     function updateStrategy() {
         const body = document.getElementById('strategy-body');
         body.innerHTML = '';
+        const p = currentPerc / 100;
+        
         for(let i=0; i < defaultTiers.length - 1; i++) {
             const tier = defaultTiers[i];
             const nextTier = defaultTiers[i+1];
-            const threshold = (tier.sBase * 10) / currentPerc;
-            const result = Math.floor((threshold * (currentPerc/100)) / 5); 
+            
+            // Formula: Threshold * (1 - p) = HoldAmount  => Threshold = HoldAmount / (1 - p)
+            const threshold = Math.ceil(tier.hold / (1 - p));
+            const merged = threshold * p;
+            const gained = Math.floor(merged / 5);
             
             body.innerHTML += `
                 <tr>
                     <td>Tier ${nextTier.id}</td>
-                    <td style="color: var(--pink); font-weight: bold;">${formatWithCommas(Math.floor(threshold))} (T${tier.id})</td>
-                    <td style="color: var(--green);">+${formatWithCommas(result)} (T${nextTier.id})</td>
+                    <td style="color: var(--pink); font-weight: bold;">${formatWithCommas(threshold)} (T${tier.id})</td>
+                    <td style="color: var(--green);">+${formatWithCommas(gained)} (T${nextTier.id})</td>
                 </tr>
             `;
         }
@@ -524,11 +487,11 @@
         defaultTiers.forEach(t => {
             data.tiers.push({ id: t.id, h: document.getElementById(`h-${t.id}`).value, w: document.getElementById(`w-${t.id}`).value });
         });
-        localStorage.setItem('factoryCalcData_v3', JSON.stringify(data));
+        localStorage.setItem('factoryCalcData_v4', JSON.stringify(data));
     }
 
     function loadData() {
-        const saved = localStorage.getItem('factoryCalcData_v3');
+        const saved = localStorage.getItem('factoryCalcData_v4');
         if (saved) {
             const data = JSON.parse(saved);
             document.getElementById('rate').value = data.rate;
