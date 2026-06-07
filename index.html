@@ -283,7 +283,7 @@
             <h3 id="lbl-strat-title">Bulk Merger Strategy</h3>
             <div class="perc-btn-group">
                 <button class="perc-btn active" onclick="setPerc(10)">10%</button>
-                <button class="perc-btn" onclick="setPerc(20)">20%</button>
+                <button class="perc-btn" onclick="setPerc(25)">25%</button>
                 <button class="perc-btn" onclick="setPerc(50)">50%</button>
             </div>
         </div>
@@ -354,7 +354,7 @@
         ru: {
             locale: "ru-RU", rate: "Очков / сек (Скорость)", needed: "Нужно очков", have: "Есть", want: "Нужно", estimation: "Оценка времени",
             s: "Секунды:", m: "Минуты:", h: "Часы:", d: "Дни:", completion: "Дата завершения", time_req: "Нужное время:",
-            total: "Всего целевых очков:", goal: "Цель достигнута!", no_target: "Нет цели", time_lbl: "Время: ",
+            total: "Всего целевых очков:", goal: "Цель достигнуta!", no_target: "Нет цели", time_lbl: "Время: ",
             strat_title: "Стратегия Слияния", th_tier: "Целевой Тир", th_merge: "Сливать пред. при...", th_result: "Прим. результат"
         },
         id: {
@@ -367,7 +367,7 @@
             locale: "pt-PT", rate: "Pontos / Seg (Taxa)", needed: "Pontos Necessários", have: "Possuo", want: "Quero", estimation: "Estimativa de Tempo",
             s: "Segundos:", m: "Minutos:", h: "Horas:", d: "Dias:", completion: "Data de Conclusão", time_req: "Tempo Necessário:",
             total: "Total de Pontos do Objetivo:", goal: "Meta Atingida!", no_target: "Sem alvo", time_lbl: "Tempo: ",
-            strat_title: "Estratégia de Fusão", th_tier: "Tier Alvo", th_merge: "Fundir anterior em...", th_result: "Resultado Est."
+            strat_title: "Estrategia de Fusão", th_tier: "Tier Alvo", th_merge: "Fundir anterior em...", th_result: "Resultado Est."
         }
     };
 
@@ -437,9 +437,8 @@
         for(let i=0; i < defaultTiers.length - 1; i++) {
             const tier = defaultTiers[i];
             const nextTier = defaultTiers[i+1];
-            // Calc threshold: If 10% is base, 20% needs half as much base units to get same result
             const threshold = (tier.sBase * 10) / currentPerc;
-            const result = Math.floor((threshold * (currentPerc/100)) / 5); // Merging into next tier (requires 5)
+            const result = Math.floor((threshold * (currentPerc/100)) / 5); 
             
             body.innerHTML += `
                 <tr>
