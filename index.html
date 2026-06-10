@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory & Rune Calculator</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header-nav">
+        <div class="nav-left">
+            <select id="langSelect" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="pl">Polski</option>
+                <option value="ru">Русский</option>
+                <option value="id">Bahasa Indonesia</option>
+                <option value="pt">Português</option>
+            </select>
+            <button class="btn-nav active" id="nav-factory" onclick="showView('factory')">Factory Calculator</button>
+            <button class="btn-nav" id="nav-rune" onclick="showView('rune')">Rune Calculator</button>
+        </div>
+        <button class="btn-settings" onclick="toggleModal()">⚙️ Settings</button>
+    </div>
+
+    <div id="view-factory" class="view-section active">
+        <h1>Factory Calculator</h1>
+        <div class="top-bar">
+            <div class="stat-card">
+                <label id="lbl-rate">Points / Sec (Rate)</label>
+                <input type="text" id="rate" value="350" oninput="handleInput(this, 'factory')">
+            </div>
+            <div class="stat-card">
+                <label id="lbl-needed">Real Points Needed</label>
+                <div id="pts-needed" style="font-size: 2rem; font-weight: bold; color: var(--pink); margin-top: 5px;">0</div>
+            </div>
+        </div>
+        <div class="tier-grid" id="tier-container"></div>
+        <div class="reset-container">
+            <button class="btn-action" onclick="resetFields('want')" id="btn-reset-want">Reset "Want"</button>
+            <button class="btn-action" onclick="resetFields('have')" id="btn-reset-have">Reset "Have"</button>
+            <button class="btn-action" onclick="resetFields('both')" id="btn-reset-both">Reset All</button>
+        </div>
+        <div class="strategy-card">
+            <div class="strategy-header">
+                <h3 id="lbl-strat-title" style="color: var(--blue); text-transform: uppercase; margin:0;">Bulk Merger Strategy</h3>
+                <div class="perc-btn-group">
+                    <button class="perc-btn" onclick="setPerc(10)">10%</button>
+                    <button class="perc-btn" onclick="setPerc(25)">25%</button>
+                    <button class="perc-btn" onclick="setPerc(50)">50%</button>
+                </div>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="strategy-table">
+                    <thead>
+                        <tr><th id="lbl-th-tier">Target</th><th id="lbl-th-merge">Merge Previous at...</th><th id="lbl-th-result">Est. Gain</th></tr>
+                    </thead>
+                    <tbody id="strategy-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-rune" class="view-section">
+        <h1>Rune Calculator</h1>
+        <div class="rune-grid">
+            <div class="rune-box">
+                <h3 id="lbl-rune-stats">1. Current Stats</h3>
+                <label id="lbl-rune-luck">Rune Luck Multiplier:</label>
+                <div class="rune-input-group">
+                    <input type="text" id="runeLuckNum" value="1" oninput="handleInput(this, 'rune')">
+                    <select id="runeLuckSuffix" onchange="calculateRune()"></select>
+                </div>
+                <label id="lbl-rune-bulk">Rune Bulk:</label>
+                <div class="rune-input-group">
+                    <input type="text" id="runeBulkNum" value="1" oninput="handleInput(this, 'rune')">
+                    <select id="runeBulkSuffix" onchange="calculateRune()"></select>
+                </div>
+                <label id="lbl-rune-speed">Rune Speed (Seconds):</label>
+                <input type="text" id="runeSpeed" value="0.05" oninput="handleInput(this, 'rune')" style="width:100%; background:#060912; border:1px solid var(--border); color:#fff; padding:10px; border-radius:8px; text-align:center;">
+            </div>
+            <div class="rune-box">
+                <h3 id="lbl-rune-target">2. Target Settings</h3>
+                <label id="lbl-rune-goal">Target Amount / RPS Goal:</label>
+                <div class="rune-input-group">
+                    <input type="text" id="runeTargetNum" value="10" oninput="handleInput(this, 'rune')">
+                    <select id="runeTargetSuffix" onchange="calculateRune()"></select>
+                </div>
+                <div style="margin-top:20px;">
+                    <label id="lbl-raw-rps">Raw Production (RPS):</label>
+                    <div id="out-raw-rps" class="rune-res-val">-</div>
+                    <label id="lbl-multi-rps">Multiplied Score /s:</label>
+                    <div id="out-multi-rps" class="rune-res-val" style="color:var(--blue)">-</div>
+                </div>
+            </div>
+        </div>
+        <div class="rune-box" style="margin-bottom:25px; border-bottom:3px solid var(--green);">
+            <h3 id="lbl-rune-results" style="color:var(--green)">3. Results & Time</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <label id="lbl-req-bulk">Required Bulk for Goal:</label>
+                    <div id="out-req-bulk" class="rune-res-val">-</div>
+                </div>
+                <div>
+                    <label id="lbl-time-grind">Time to reach Goal:</label>
+                    <div id="out-rune-time" class="rune-res-val" style="color:var(--blue)">-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <div class="res-column">
+            <h3 id="lbl-estimation" style="color: var(--blue); margin: 0 0 15px 0;">Time Estimation</h3>
+            <div class="res-row"><span id="lbl-d">Days:</span> <span class="res-val" id="out-d">0</span></div>
+            <div class="res-row"><span id="lbl-h">Hours:</span> <span class="res-val" id="out-h">0</span></div>
+        </div>
+        <div class="res-column" style="text-align: center;">
+            <h3 id="lbl-completion" style="color: var(--blue); margin: 0 0 15px 0;">Completion Date</h3>
+            <div id="hms-needed" style="font-size: 1.2rem; font-weight: bold;">00:00:00</div>
+            <div class="done-text" id="done-by">--/--/-- - --:--</div>
+        </div>
+    </div>
+</div>
+
+<div id="settingsModal" class="modal">
+    <div class="modal-content">
+        <h2 style="color: var(--blue); margin-top: 0;">Settings</h2>
+        <div style="margin-bottom: 20px;">
+            <label style="color:var(--blue); display:block; margin-bottom:10px;">Data Export / Import</label>
+            <textarea id="io-area" style="width: 100%; height: 80px; background: #000; color: var(--green); border: 1px solid var(--border); font-size: 0.7rem;"></textarea>
+            <div style="display: flex; gap: 5px; margin-top: 10px;">
+                <button class="btn-nav" onclick="exportData()" style="flex:1">Export</button>
+                <button class="btn-nav" onclick="importData()" style="flex:1">Import</button>
+            </div>
+        </div>
+        <button onclick="toggleModal()" style="width: 100%; padding: 12px; background: var(--blue); color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+    </div>
+</div>
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>
