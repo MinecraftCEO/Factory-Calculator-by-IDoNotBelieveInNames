@@ -11,7 +11,7 @@ img {
     user-select: none; 
 }
 
-            body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #175016; overflow: hidden; touch-action: none; font-family: sans-serif; }
+            body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000000; overflow: hidden; touch-action: none; font-family: sans-serif; }
             #head { position: fixed; top: 40px; left: 0; width: 100%; z-index: 1000; text-align: center; text-shadow: 2px 2px 10px rgba(0,0,0,0.9); pointer-events: none; font-family: 'Righteous', cursive; font-size: 73px; color: #ffffff; font-weight: bold; transition: opacity 0.8s ease, visibility 0.8s; }
             #vp { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; cursor: grab; }
             #c { position: relative; line-height: 0; transform-origin: center; transition: transform 0.1s ease-out; }
