@@ -33,14 +33,13 @@ function formatWithCommas(n) {
 
 function parseRaw(s) {
     if (!s) return 0;
-    // Ersetze Komma durch Punkt für die interne Berechnung, entferne alles außer Zahlen, Punkt und Minus
     let cleaned = String(s).replace(',', '.').replace(/[^\d.-]/g, '');
     return parseFloat(cleaned) || 0;
 }
 
 function handleInput(el, type) {
     if (type === 'factory') {
-        let val = el.value.replace(/\D/g, ''); // Für Factory nur ganze Zahlen
+        let val = el.value.replace(/\D/g, '');
         if (val !== "") {
             const loc = translations[currentLang] ? translations[currentLang].locale : "en-US";
             el.value = parseInt(val).toLocaleString(loc);
@@ -49,7 +48,6 @@ function handleInput(el, type) {
         }
         calculateFactory();
     } else {
-        // Bei Rune erlauben wir Punkte/Kommas während der Eingabe
         calculateRune();
     }
 }
@@ -108,38 +106,30 @@ function calculateFactory() {
     document.querySelectorAll('.want-in').forEach(i => tarPts += parseRaw(i.value) * parseFloat(i.dataset.mult));
     const diff = Math.max(0, tarPts - curPts);
     const sec = rate > 0 ? diff / rate : 0;
-    
     const ptsNeededEl = document.getElementById('pts-needed');
     if (ptsNeededEl) ptsNeededEl.innerText = formatWithCommas(diff);
-    
     document.getElementById('out-d').innerText = (sec / 86400).toLocaleString(t.locale, {maximumFractionDigits: 1});
     document.getElementById('out-h').innerText = (sec / 3600).toLocaleString(t.locale, {maximumFractionDigits: 1});
     document.getElementById('hms-needed').innerText = formatHMS(sec);
-    
     const doneByEl = document.getElementById('done-by');
     if (sec > 0) doneByEl.innerText = new Date(Date.now() + sec*1000).toLocaleString(t.locale);
     else doneByEl.innerText = tarPts > 0 ? t.goal : "--/--/--";
-    
     updateStrategy();
     defaultTiers.forEach(tier => {
         const hIn = document.getElementById(`h-${tier.id}`);
         const wIn = document.getElementById(`w-${tier.id}`);
         if (!hIn || !wIn) return;
-        
         const hVal = parseRaw(hIn.value);
         const wVal = parseRaw(wIn.value);
         const tDiff = Math.max(0, (wVal - hVal) * tier.mult);
         const tSec = rate > 0 ? tDiff / rate : 0;
         const span = document.getElementById(`tier-time-${tier.id}`);
-        
         if (tSec <= 0 && wVal > 0) span.innerText = t.goal;
         else if (wVal === 0) span.innerText = t.no_target;
         else span.innerText = t.time_lbl + formatHMS(tSec);
-
         const infoLabel = document.getElementById(`tier-val-${tier.id}`);
         const hT1 = document.getElementById(`h-t1-${tier.id}`);
         const wT1 = document.getElementById(`w-t1-${tier.id}`);
-
         if (tierDetailState[tier.id]) {
             infoLabel.innerText = `DIFFERENCE: ${formatWithCommas(tDiff)} T1`;
             hT1.innerText = `${formatWithCommas(hVal * tier.mult)} T1`;
@@ -158,7 +148,6 @@ function calculateFactory() {
 function calculateRune() {
     const luckNumEl = document.getElementById('runeLuckNum');
     if (!luckNumEl) return;
-
     const luck = parseRaw(luckNumEl.value);
     const luckSfx = parseInt(document.getElementById('runeLuckSuffix').value);
     const bulk = parseRaw(document.getElementById('runeBulkNum').value);
@@ -166,9 +155,7 @@ function calculateRune() {
     const speed = parseRaw(document.getElementById('runeSpeed').value);
     const target = parseRaw(document.getElementById('runeTargetNum').value);
     const targetSfx = parseInt(document.getElementById('runeTargetSuffix').value);
-    
     if (bulk <= 0 || speed <= 0) return;
-    
     let rps = bulk / speed;
     document.getElementById('out-raw-rps').textContent = formatRuneNum(rps, bulkSfx) + " /s";
     let luckValue = luck * Math.pow(10, (luckSfx) * 3);
@@ -179,7 +166,6 @@ function calculateRune() {
     document.getElementById('out-req-bulk').textContent = formatRuneNum(reqBulk, bulkSfx);
     let grindSec = (target / rps) * targetScale;
     document.getElementById('out-rune-time').textContent = formatGrindTime(grindSec);
-    
     if (activeView === 'rune') {
         document.getElementById('out-d').innerText = (grindSec / 86400).toLocaleString(translations[currentLang].locale, {maximumFractionDigits: 1});
         document.getElementById('out-h').innerText = (grindSec / 3600).toLocaleString(translations[currentLang].locale, {maximumFractionDigits: 1});
@@ -245,7 +231,6 @@ function toggleModal() {
 function changeLanguage() {
     currentLang = document.getElementById('langSelect').value;
     const t = translations[currentLang];
-    
     document.getElementById('lbl-rate').innerText = t.rate;
     document.getElementById('lbl-needed').innerText = t.needed;
     document.getElementById('lbl-estimation').innerText = t.estimation;
@@ -259,10 +244,8 @@ function changeLanguage() {
     document.getElementById('btn-reset-have').innerText = t.reset_have;
     document.getElementById('btn-reset-want').innerText = t.reset_want;
     document.getElementById('btn-reset-both').innerText = t.reset_both;
-    
     document.querySelectorAll('.lbl-have').forEach(e => e.innerText = t.have);
     document.querySelectorAll('.lbl-want').forEach(e => e.innerText = t.want);
-    
     document.getElementById('lbl-rune-stats').innerText = t.rune_stats;
     document.getElementById('lbl-rune-luck').innerText = t.rune_luck;
     document.getElementById('lbl-rune-bulk').innerText = t.rune_bulk;
@@ -274,12 +257,10 @@ function changeLanguage() {
     document.getElementById('lbl-rune-results').innerText = t.rune_results;
     document.getElementById('lbl-req-bulk').innerText = t.req_bulk;
     document.getElementById('lbl-time-grind').innerText = t.time_grind;
-    
     document.querySelectorAll('.have-in, .want-in').forEach(input => {
         let v = parseRaw(input.value);
         if (v > 0) input.value = Math.floor(v).toLocaleString(t.locale);
     });
-
     if(activeView === 'factory') calculateFactory(); else calculateRune();
 }
 
