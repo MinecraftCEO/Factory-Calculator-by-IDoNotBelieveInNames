@@ -6,7 +6,7 @@ const translations = {
     pl: { locale: "pl-PL", rate: "Punkty / Sek (Tempo)", needed: "Wymagane T1 dla wszystkich 'Chcę'", have: "Posiadam", want: "Chcę", estimation: "Szacowany Czas", d: "Dni:", h: "Godziny:", completion: "Data Ukończenia", goal: "Cel Osiągnięty!", no_target: "Brak celu", time_lbl: "Czas: ", strat_title: "Strategia Łączenia", th_tier: "Tier Docelowy", th_merge: "Połącz przy...", th_result: "Zysk ok.", reset_have: "Reset Posiadam", reset_want: "Reset Chcę", reset_both: "Reset Wszystko", confirm: "Pewny?", rune_stats: "1. Statystyki", rune_luck: "Mnożnik Szczęścia:", rune_bulk: "Ilość Run:", rune_speed: "Prędkość (Sekundy):", rune_target: "2. Ustawienia Celu", rune_goal: "Ilość / Cel RPS:", raw_rps: "Produkcja (RPS):", multi_rps: "Wynik Pomnożony /s:", rune_results: "3. Wyniki i Czas", req_bulk: "Wymagana Ilość:", time_grind: "Czas do celu:" },
     ru: { locale: "ru-RU", rate: "Очков / сек (Скорость)", needed: "Нужно T1 для всех 'Нужно'", have: "Есть", want: "Нужно", estimation: "Оценка времени", d: "Дни:", h: "Часы:", completion: "Дата завершения", goal: "Цель достигнута!", no_target: "Нет цели", time_lbl: "Время: ", strat_title: "Стратегия Слияния", th_tier: "Целевой Тир", th_merge: "Сливать при...", th_result: "Прирост", reset_have: "Сброс Есть", reset_want: "Сброс Нужно", reset_both: "Сброс Всего", confirm: "Уверены?", rune_stats: "1. Статистика", rune_luck: "Множитель удачи:", rune_bulk: "Объем рун:", rune_speed: "Скорость (сек):", rune_target: "2. Цель", rune_goal: "Цель очков / RPS:", raw_rps: "Производство (RPS):", multi_rps: "Множитель очков /с:", rune_results: "3. Результаты", req_bulk: "Нужный объем:", time_grind: "Время до цели:" },
     id: { locale: "id-ID", rate: "Poin / Detik (Laju)", needed: "T1 yang dibutuhkan untuk semua 'Ingin'", have: "Punya", want: "Ingin", estimation: "Estimasi Waktu", d: "Hari:", h: "Jam:", completion: "Tanggal Selesai", goal: "Target Tercapai!", no_target: "Tidak ada target", time_lbl: "Waktu: ", strat_title: "Strategi Penggabungan", th_tier: "Tier Target", th_merge: "Gabung di...", th_result: "Hasil Est.", reset_have: "Reset Punya", reset_want: "Reset Ingin", reset_both: "Reset Semua", confirm: "Yakin?", rune_stats: "1. Statistik", rune_luck: "Pengali Keberuntungan:", rune_bulk: "Jumlah Rune:", rune_speed: "Kecepatan (Detik):", rune_target: "2. Target", rune_goal: "Jumlah / Target RPS:", raw_rps: "Produksi Mentah (RPS):", multi_rps: "Skor Pengali /detik:", rune_results: "3. Hasil & Waktu", req_bulk: "Jumlah yang Dibutuhkan:", time_grind: "Waktu untuk target:" },
-    pt: { locale: "pt-PT", rate: "Pontos / Seg (Taxa)", needed: "T1 necessário para todos os 'Quero'", have: "Possuo", want: "Quero", estimation: "Estimativa de Tempo", d: "Dias:", h: "Horas:", completion: "Date de Conclusão", goal: "Meta Atingida!", no_target: "Sem alvo", time_lbl: "Tempo: ", strat_title: "Estrategia de Fusão", th_tier: "Tier Alvo", th_merge: "Fundir em...", th_result: "Ganho Est.", reset_have: "Reset Possuo", reset_want: "Reset Quero", reset_both: "Reset Tudo", confirm: "Tem certeza?", rune_stats: "1. Estatísticas", rune_luck: "Multiplicador de Sorte:", rune_bulk: "Volume de Runas:", rune_speed: "Velocidade (Segundos):", rune_target: "2. Objetivo", rune_goal: "Quantidade / RPS Alvo:", raw_rps: "Produção Bruta (RPS):", multi_rps: "Pontuação /s:", rune_results: "3. Resultados", req_bulk: "Volume Necessário:", time_grind: "Tempo para a meta:" }
+    pt: { locale: "pt-PT", rate: "Pontos / Seg (Taxa)", needed: "T1 necessário para todos os 'Quero'", have: "Possuo", want: "Quero", estimation: "Estimativa de Tempo", d: "Dias:", h: "Horas:", completion: "Date de Conclusão", goal: "Meta Atingida!", no_target: "Sem alvo", time_lbl: "Tempo: ", strat_title: "Estrategia de Fusão", th_tier: "Tier Alvo", th_merge: "Fundir em...", th_result: "Ganho Est.", reset_have: "Reset Possuo", reset_want: "Reset Quero", reset_both: "Reset Tudo", confirm: "Tem certeza?", rune_stats: "1. Estatísticas", rune_luck: "Multiplicador de Sorte:", rune_bulk: "Volume de Runas:", rune_speed: "Velocidade (Segundos):", rune_target: "2. Objetivo", rune_goal: "Quantidade / RPS Alvo:", raw_rps: "Produção Bruta (RPS):", multi_rps: "Pontuação /s:", rune_results: "3. Resultados", req_bulk: "Volume Necessário:", time_grind: "Tempo para la meta:" }
 };
 
 const runeSuffixes = ["", "K", "M", "B", "T", "Qd", "Qn", "Sx", "Sp", "Oc", "No", "De", "Ude", "Dde", "Tde", "Qdde", "Qnde", "Sxde", "Spde", "Ocde", "Node", "Vgde", "Uvgde", "Dvgde", "Tvgde", "Qavgde", "Qivgde", "Sxvgde", "Spvgde", "Ocvgde", "Novgde", "Tgde", "Utgde", "Dtgde", "Ttgde", "Qatgde", "Qitgde", "Sxtgde", "Sptgde", "Octgde", "Notgde", "Qagde", "Uqagde", "Dqagde", "Tqagde", "Qaqagde", "Qiqagde", "Sxqagde", "Spqagde", "Ocqagde", "Noqagde", "Qgde", "Uqgde", "Dqgde", "Tqgde", "Qaqgde", "Qiqgde", "Sxqgde", "Spqggde", "Ocqgde", "Noqgde", "Sgde", "Usgde", "Dsgde", "Tsgde", "Qasgde", "Qisgde", "Sxsgde", "Spsgde", "Ocsgde", "Nosgde", "Spgde", "Uspgde", "Dspgde", "Tspgde", "Qaspgde", "Qispgde", "Sxspgde", "Spspgde", "Ocspgde", "Nospgde", "Ogde", "Uogde", "Dogde", "Togde", "Qaogde", "Qiogde", "Sxogde", "Spogde", "Ocogde", "Noogde", "Ngde", "Ungde", "Dngde", "Tngde", "Qangde", "Qingde", "Sxngde", "Spngde", "Ocngde", "Nongde", "Cde"];
@@ -33,19 +33,25 @@ function formatWithCommas(n) {
 
 function parseRaw(s) {
     if (!s) return 0;
-    let cleaned = String(s).replace(/[^\d.-]/g, '');
+    // Ersetze Komma durch Punkt für die interne Berechnung, entferne alles außer Zahlen, Punkt und Minus
+    let cleaned = String(s).replace(',', '.').replace(/[^\d.-]/g, '');
     return parseFloat(cleaned) || 0;
 }
 
 function handleInput(el, type) {
-    let val = el.value.replace(/\D/g, '');
-    if (val !== "") {
-        const loc = translations[currentLang] ? translations[currentLang].locale : "en-US";
-        el.value = parseInt(val).toLocaleString(loc);
+    if (type === 'factory') {
+        let val = el.value.replace(/\D/g, ''); // Für Factory nur ganze Zahlen
+        if (val !== "") {
+            const loc = translations[currentLang] ? translations[currentLang].locale : "en-US";
+            el.value = parseInt(val).toLocaleString(loc);
+        } else {
+            el.value = "";
+        }
+        calculateFactory();
     } else {
-        el.value = "";
+        // Bei Rune erlauben wir Punkte/Kommas während der Eingabe
+        calculateRune();
     }
-    if(type === 'factory') calculateFactory(); else calculateRune();
 }
 
 function toggleTierDetail(id) {
@@ -269,9 +275,9 @@ function changeLanguage() {
     document.getElementById('lbl-req-bulk').innerText = t.req_bulk;
     document.getElementById('lbl-time-grind').innerText = t.time_grind;
     
-    document.querySelectorAll('input[type="text"]').forEach(input => {
+    document.querySelectorAll('.have-in, .want-in').forEach(input => {
         let v = parseRaw(input.value);
-        if (v > 0) input.value = v.toLocaleString(t.locale);
+        if (v > 0) input.value = Math.floor(v).toLocaleString(t.locale);
     });
 
     if(activeView === 'factory') calculateFactory(); else calculateRune();
