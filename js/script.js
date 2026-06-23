@@ -2,14 +2,14 @@ const translations = {
     en: { locale: "en-US", rate: "Points / Sec (Rate)", needed: "Required T1 to reach all Wanted", have: "Have", want: "Want", estimation: "Time Estimation", d: "Days:", h: "Hours:", completion: "Completion Date", goal: "Goal Reached!", no_target: "No Target", time_lbl: "Time: ", strat_title: "Bulk Merger Strategy", th_tier: "Target", th_merge: "Merge Previous at...", th_result: "Est. Gain", reset_have: "Reset 'Have'", reset_want: "Reset 'Want'", reset_both: "Reset All", confirm: "Are you sure?", rune_stats: "1. Current Stats", rune_luck: "Rune Luck Multiplier:", rune_bulk: "Rune Bulk:", rune_speed: "Rune Speed (Seconds):", rune_target: "2. Target Settings", rune_goal: "Target Amount / RPS Goal:", raw_rps: "Raw Production (RPS):", multi_rps: "Multiplied Score /s:", rune_results: "3. Results & Time", req_bulk: "Required Bulk for Goal:", time_grind: "Time to reach Goal:" },
     de: { locale: "de-DE", rate: "Punkte / Sek (Rate)", needed: "Benötigte T1 für alle Ziele", have: "Besitz", want: "Ziel", estimation: "Zeit-Schätzung", d: "Tage:", h: "Stunden:", completion: "Fertigstellung", goal: "Ziel erreicht!", no_target: "Kein Ziel", time_lbl: "Zeit: ", strat_title: "Bulk-Merge Strategie", th_tier: "Ziel", th_merge: "Mergen ab (für Bonus)...", th_result: "Gewinn ca.", reset_have: "Besitz Reset", reset_want: "Ziel Reset", reset_both: "Alles Reset", confirm: "Bist du sicher?", rune_stats: "1. Aktuelle Stats", rune_luck: "Runen-Glück Multiplikator:", rune_bulk: "Runen-Menge (Bulk):", rune_speed: "Runen-Tempo (Sekunden):", rune_target: "2. Ziel-Einstellungen", rune_goal: "Ziel-Menge / RPS Ziel:", raw_rps: "Roh-Produktion (RPS):", multi_rps: "Multiplizierter Wert /s:", rune_results: "3. Ergebnisse & Zeit", req_bulk: "Benötigte Menge für Ziel:", time_grind: "Zeit bis zum Ziel:" },
     fr: { locale: "fr-FR", rate: "Points / Sec (Taux)", needed: "T1 requis pour tout le 'Voulu'", have: "Possédé", want: "Voulu", estimation: "Estimation du Temps", d: "Jours:", h: "Heures:", completion: "Date d'achèvement", goal: "Objectif Atteint!", no_target: "Pas de cible", time_lbl: "Temps: ", strat_title: "Stratégie de Fusion", th_tier: "Tier Cible", th_merge: "Fusionner à...", th_result: "Gain Est.", reset_have: "Reset Possédé", reset_want: "Reset Voulu", reset_both: "Reset Tout", confirm: "Sûr?", rune_stats: "1. Stats Actuelles", rune_luck: "Multiplicateur de Chance:", rune_bulk: "Volume de Runes:", rune_speed: "Vitesse (Secondes):", rune_target: "2. Paramètres Cibles", rune_goal: "Montant Cible / RPS:", raw_rps: "Production Brute (RPS):", multi_rps: "Score Multiplié /s:", rune_results: "3. Résultats & Temps", req_bulk: "Volume Requis:", time_grind: "Temps pour l'objectif:" },
-    es: { locale: "es-ES", rate: "Puntos / Seg (Tasa)", needed: "T1 necesario para todo el 'Quiero'", have: "Tengo", want: "Quiero", estimation: "Estimación de Tiempo", d: "Días:", h: "Horas:", completion: "Fecha de Finalización", goal: "¡Meta Alcanzada!", no_target: "Sin objetivo", time_lbl: "Tiempo: ", strat_title: "Estrategia de Fusión", th_tier: "Tier Objetivo", th_merge: "Fusionar en...", th_result: "Ganancia Est.", reset_have: "Reset Tengo", reset_want: "Reset Quiero", reset_both: "Reset Todo", confirm: "Seguro?", rune_stats: "1. Estadísticas", rune_luck: "Multiplicador de Suerte:", rune_bulk: "Volumen de Runas:", rune_speed: "Velocidad (Segundos):", rune_target: "2. Objetivo", rune_goal: "Cantidad / RPS Objetivo:", raw_rps: "Producción Bruta (RPS):", multi_rps: "Puntuación Multiplicada /s:", rune_results: "3. Resultados", req_bulk: "Volumen Necesario:", time_grind: "Tiempo para la meta:" },
+    es: { locale: "es-ES", rate: "Puntos / Seg (Tasa)", needed: "T1 necesario para todo el 'Quiero'", have: "Tengo", want: "Quiero", estimation: "Estimación de Tiempo", d: "Días:", h: "Horas:", completion: "Fecha de Finalización", goal: "¡Meta Alcanzada!", no_target: "Sin objetivo", time_lbl: "Tiempo: ", strat_title: "Estrategia de Fusión", th_tier: "Tier Objetivo", th_merge: "Fusionar en...", th_result: "Ganancia Est.", reset_have: "Reset Tengo", reset_want: "Reset Quiero", reset_both: "Reset Todo", confirm: "¿Seguro?", rune_stats: "1. Estadísticas", rune_luck: "Multiplicador de Suerte:", rune_bulk: "Volumen de Runas:", rune_speed: "Velocidad (Segundos):", rune_target: "2. Objetivo", rune_goal: "Cantidad / RPS Objetivo:", raw_rps: "Producción Bruta (RPS):", multi_rps: "Puntuación Multiplicada /s:", rune_results: "3. Resultados", req_bulk: "Volumen Necesario:", time_grind: "Tiempo para la meta:" },
     pl: { locale: "pl-PL", rate: "Punkty / Sek (Tempo)", needed: "Wymagane T1 dla wszystkich 'Chcę'", have: "Posiadam", want: "Chcę", estimation: "Szacowany Czas", d: "Dni:", h: "Godziny:", completion: "Data Ukończenia", goal: "Cel Osiągnięty!", no_target: "Brak celu", time_lbl: "Czas: ", strat_title: "Strategia Łączenia", th_tier: "Tier Docelowy", th_merge: "Połącz przy...", th_result: "Zysk ok.", reset_have: "Reset Posiadam", reset_want: "Reset Chcę", reset_both: "Reset Wszystko", confirm: "Pewny?", rune_stats: "1. Statystyki", rune_luck: "Mnożnik Szczęścia:", rune_bulk: "Ilość Run:", rune_speed: "Prędkość (Sekundy):", rune_target: "2. Ustawienia Celu", rune_goal: "Ilość / Cel RPS:", raw_rps: "Produkcja (RPS):", multi_rps: "Wynik Pomnożony /s:", rune_results: "3. Wyniki i Czas", req_bulk: "Wymagana Ilość:", time_grind: "Czas do celu:" },
     ru: { locale: "ru-RU", rate: "Очков / сек (Скорость)", needed: "Нужно T1 для всех 'Нужно'", have: "Есть", want: "Нужно", estimation: "Оценка времени", d: "Дни:", h: "Часы:", completion: "Дата завершения", goal: "Цель достигнута!", no_target: "Нет цели", time_lbl: "Время: ", strat_title: "Стратегия Слияния", th_tier: "Целевой Тир", th_merge: "Сливать при...", th_result: "Прирост", reset_have: "Сброс Есть", reset_want: "Сброс Нужно", reset_both: "Сброс Всего", confirm: "Уверены?", rune_stats: "1. Статистика", rune_luck: "Множитель удачи:", rune_bulk: "Объем рун:", rune_speed: "Скорость (сек):", rune_target: "2. Цель", rune_goal: "Цель очков / RPS:", raw_rps: "Производство (RPS):", multi_rps: "Множитель очков /с:", rune_results: "3. Результаты", req_bulk: "Нужный объем:", time_grind: "Время до цели:" },
-    id: { locale: "id-ID", rate: "Poin / Detik (Laju)", needed: "T1 yang dibutuhkan untuk semua 'Ingin'", have: "Punya", want: "Ingin", estimation: "Estimasi Waktu", d: "Hari:", h: "Jam:", completion: "Tanggal Selesai", goal: "Target Tercapai!", no_target: "Tidak ada target", time_lbl: "Waktu: ", strat_title: "Strategi Penggabungan", th_tier: "Tier Target", th_merge: "Gabung di...", th_result: "Hasil Est.", reset_have: "Reset Punya", reset_want: "Reset Ingin", reset_both: "Reset Semua", confirm: "Yakin?", rune_stats: "1. Statistik", rune_luck: "Pengali Keberuntungan:", rune_bulk: "Jumlah Rune:", rune_speed: "Kecepatan (Detik):", rune_target: "2. Target", rune_goal: "Jumlah / Target RPS:", raw_rps: "Produksi Mentah (RPS):", multi_rps: "Skor Pengali /detik:", rune_results: "3. Hasil & Waktu", req_bulk: "Jumlah yang Dibutuhkan:", time_grind: "Waktu untuk target:" },
-    pt: { locale: "pt-PT", rate: "Pontos / Seg (Taxa)", needed: "T1 necessário para todos os 'Quero'", have: "Possuo", want: "Quero", estimation: "Estimativa de Tempo", d: "Dias:", h: "Horas:", completion: "Date de Conclusão", goal: "Meta Atingida!", no_target: "Sem alvo", time_lbl: "Tempo: ", strat_title: "Estrategia de Fusão", th_tier: "Tier Alvo", th_merge: "Fundir em...", th_result: "Ganho Est.", reset_have: "Reset Possuo", reset_want: "Reset Quero", reset_both: "Reset Tudo", confirm: "Tem certeza?", rune_stats: "1. Estatísticas", rune_luck: "Multiplicador de Sorte:", rune_bulk: "Volume de Runas:", rune_speed: "Velocidade (Segundos):", rune_target: "2. Objetivo", rune_goal: "Quantidade / RPS Alvo:", raw_rps: "Produção Bruta (RPS):", multi_rps: "Pontuação /s:", rune_results: "3. Resultados", req_bulk: "Volume Necessário:", time_grind: "Tempo para la meta:" }
+    id: { locale: "id-ID", rate: "Poin / Detik (Laju)", needed: "T1 yang dibutuhkan untuk semua 'Ingin'", have: "Punya", want: "Ingin", estimation: "Estimasi Waktu", d: "Hari:", h: "Jam:", completion: "Tanggal Selesai", goal: "Target Tercapai!", no_target: "Tidak ada target", time_lbl: "Waktu: ", strat_title: "Strategi Penggabungan", th_tier: "Tier Target", th_merge: "Gabung di...", th_result: "Hasil Est.", reset_have: "Reset Punya", reset_want: "Reset Ingin", reset_both: "Reset Semua", confirm: "Yakin?", rune_stats: "1. Statistik", rune_luck: "Pengali Keberuntungan:", rune_bulk: "Jumlah Rune:", rune_speed: "Kecepatan (Detik):", rune_target: "2. Target", rune_goal: "Jumlah / Target RPS:", raw_rps: "Produksi Mentah (RPS):", multi_rps: "Skor Pengali /detik:", rune_results: "3. Hasil & Waktu", req_bulk: "Jumlah yang Dibutuhkan:", time_grind: "Waktu für Target:" },
+    pt: { locale: "pt-PT", rate: "Pontos / Seg (Taxa)", needed: "T1 necessário para todos os 'Quero'", have: "Possuo", want: "Quero", estimation: "Estimativa de Tempo", d: "Dias:", h: "Horas:", completion: "Data de Conclusão", goal: "Meta Atingida!", no_target: "Sem alvo", time_lbl: "Tempo: ", strat_title: "Estratégia de Fusão", th_tier: "Tier Alvo", th_merge: "Fundir em...", th_result: "Ganho Est.", reset_have: "Reset Possuo", reset_want: "Reset Quero", reset_both: "Reset Tudo", confirm: "Tem certeza?", rune_stats: "1. Estatísticas", rune_luck: "Multiplicador de Sorte:", rune_bulk: "Volume de Runas:", rune_speed: "Velocidade (Segundos):", rune_target: "2. Objetivo", rune_goal: "Quantidade / RPS Alvo:", raw_rps: "Produção Bruta (RPS):", multi_rps: "Pontuação /s:", rune_results: "3. Resultados", req_bulk: "Volume Necessário:", time_grind: "Tempo para a meta:" }
 };
 
-const runeSuffixes = ["", "K", "M", "B", "T", "Qd", "Qn", "Sx", "Sp", "Oc", "No", "De", "Ude", "Dde", "Tde", "Qdde", "Qnde", "Sxde", "Spde", "Ocde", "Node", "Vgde", "Uvgde", "Dvgde", "Tvgde", "Qavgde", "Qivgde", "Sxvgde", "Spvgde", "Ocvgde", "Novgde", "Tgde", "Utgde", "Dtgde", "Ttgde", "Qatgde", "Qitgde", "Sxtgde", "Sptgde", "Octgde", "Notgde", "Qagde", "Uqagde", "Dqagde", "Tqagde", "Qaqagde", "Qiqagde", "Sxqagde", "Spqagde", "Ocqagde", "Noqagde", "Qgde", "Uqgde", "Dqgde", "Tqgde", "Qaqgde", "Qiqgde", "Sxqgde", "Spqggde", "Ocqgde", "Noqgde", "Sgde", "Usgde", "Dsgde", "Tsgde", "Qasgde", "Qisgde", "Sxsgde", "Spsgde", "Ocsgde", "Nosgde", "Spgde", "Uspgde", "Dspgde", "Tspgde", "Qaspgde", "Qispgde", "Sxspgde", "Spspgde", "Ocspgde", "Nospgde", "Ogde", "Uogde", "Dogde", "Togde", "Qaogde", "Qiogde", "Sxogde", "Spogde", "Ocogde", "Noogde", "Ngde", "Ungde", "Dngde", "Tngde", "Qangde", "Qingde", "Sxngde", "Spngde", "Ocngde", "Nongde", "Cde"];
+const runeSuffixes = ["", "K", "M", "B", "T", "Qd", "Qn", "Sx", "Sp", "Oc", "No", "De", "Ude", "Dde", "Tde", "Qdde", "Qnde", "Sxde", "Spde", "Ocde", "Node", "Vgde", "Uvgde", "Dvgde", "Tvgde", "Qavgde", "Qivgde", "Sxvgde", "Spvgde", "Ocvgde", "Novgde", "Tgde", "Utgde", "Dtgde", "Ttgde", "Qatgde", "Qitgde", "Sxtgde", "Sptgde", "Octgde", "Notgde", "Qagde", "Uqagde", "Dqagde", "Tqagde", "Qaqagde", "Qiqagde", "Sxqagde", "Spqagde", "Ocqagde", "Noqagde", "Qgde", "Uqgde", "Dqgde", "Tqgde", "Qaqgde", "Qiqgde", "Sxqgde", "Spqgde", "Ocqgde", "Noqgde", "Sgde", "Usgde", "Dsgde", "Tsgde", "Qasgde", "Qisgde", "Sxsgde", "Spsgde", "Ocsgde", "Nosgde", "Spgde", "Uspgde", "Dspgde", "Tspgde", "Qaspgde", "Qispgde", "Sxspgde", "Spspgde", "Ocspgde", "Nospgde", "Ogde", "Uogde", "Dogde", "Togde", "Qaogde", "Qiogde", "Sxogde", "Spogde", "Ocogde", "Noogde", "Ngde", "Ungde", "Dngde", "Tngde", "Qangde", "Qingde", "Sxngde", "Spngde", "Ocngde", "Nongde", "Cde"];
 
 const defaultTiers = [
     { id: 1, mult: 1, h: 0, w: 100000, max: "100k", hold: 100000 },
@@ -33,23 +33,20 @@ function formatWithCommas(n) {
 
 function parseRaw(s) {
     if (!s) return 0;
-    let cleaned = String(s).replace(',', '.').replace(/[^\d.-]/g, '');
-    return parseFloat(cleaned) || 0;
+    let cleaned = String(s).replace(/[^\d]/g, '');
+    return parseInt(cleaned) || 0;
 }
 
 function handleInput(el, type) {
-    if (type === 'factory') {
-        let val = el.value.replace(/\D/g, '');
-        if (val !== "") {
-            const loc = translations[currentLang] ? translations[currentLang].locale : "en-US";
-            el.value = parseInt(val).toLocaleString(loc);
-        } else {
-            el.value = "";
-        }
-        calculateFactory();
+    let rawVal = el.value.replace(/\D/g, '');
+    if (rawVal !== "") {
+        const num = parseInt(rawVal);
+        const loc = translations[currentLang] ? translations[currentLang].locale : "en-US";
+        el.value = num.toLocaleString(loc);
     } else {
-        calculateRune();
+        el.value = "";
     }
+    if (type === 'factory') calculateFactory(); else calculateRune();
 }
 
 function toggleTierDetail(id) {
@@ -69,9 +66,10 @@ function showView(view) {
 
 const container = document.getElementById('tier-container');
 if (container) {
+    let html = "";
     defaultTiers.forEach(t => {
         tierDetailState[t.id] = false;
-        container.innerHTML += `
+        html += `
             <div class="tier-card">
                 <div class="tier-title">
                     <span class="tier-name">TIER ${t.id} <small>(Max: ${t.max})</small></span>
@@ -94,6 +92,7 @@ if (container) {
                 <div class="tier-time" id="tier-time-${t.id}">Time: 0s</div>
             </div>`;
     });
+    container.innerHTML = html;
 }
 
 function calculateFactory() {
@@ -102,8 +101,8 @@ function calculateFactory() {
     const rate = parseRaw(rateEl.value);
     const t = translations[currentLang];
     let curPts = 0, tarPts = 0;
-    document.querySelectorAll('.have-in').forEach(i => curPts += parseRaw(i.value) * parseFloat(i.dataset.mult));
-    document.querySelectorAll('.want-in').forEach(i => tarPts += parseRaw(i.value) * parseFloat(i.dataset.mult));
+    document.querySelectorAll('.have-in').forEach(i => curPts += (parseRaw(i.value) * parseFloat(i.dataset.mult)));
+    document.querySelectorAll('.want-in').forEach(i => tarPts += (parseRaw(i.value) * parseFloat(i.dataset.mult)));
     const diff = Math.max(0, tarPts - curPts);
     const sec = rate > 0 ? diff / rate : 0;
     const ptsNeededEl = document.getElementById('pts-needed');
@@ -148,14 +147,13 @@ function calculateFactory() {
 function calculateRune() {
     const luckNumEl = document.getElementById('runeLuckNum');
     if (!luckNumEl) return;
-    const luck = parseRaw(luckNumEl.value);
+    const luck = parseFloat(luckNumEl.value) || 0;
     const luckSfx = parseInt(document.getElementById('runeLuckSuffix').value);
-    const bulk = parseRaw(document.getElementById('runeBulkNum').value);
+    const bulk = parseFloat(document.getElementById('runeBulkNum').value) || 0;
     const bulkSfx = parseInt(document.getElementById('runeBulkSuffix').value);
-    const speed = parseRaw(document.getElementById('runeSpeed').value);
-    const target = parseRaw(document.getElementById('runeTargetNum').value);
+    const speed = Math.max(0.001, parseFloat(document.getElementById('runeSpeed').value) || 0);
+    const target = parseFloat(document.getElementById('runeTargetNum').value) || 0;
     const targetSfx = parseInt(document.getElementById('runeTargetSuffix').value);
-    if (bulk <= 0 || speed <= 0) return;
     let rps = bulk / speed;
     document.getElementById('out-raw-rps').textContent = formatRuneNum(rps, bulkSfx) + " /s";
     let luckValue = luck * Math.pow(10, (luckSfx) * 3);
@@ -167,10 +165,11 @@ function calculateRune() {
     let grindSec = (target / rps) * targetScale;
     document.getElementById('out-rune-time').textContent = formatGrindTime(grindSec);
     if (activeView === 'rune') {
-        document.getElementById('out-d').innerText = (grindSec / 86400).toLocaleString(translations[currentLang].locale, {maximumFractionDigits: 1});
-        document.getElementById('out-h').innerText = (grindSec / 3600).toLocaleString(translations[currentLang].locale, {maximumFractionDigits: 1});
+        const loc = translations[currentLang].locale;
+        document.getElementById('out-d').innerText = (grindSec / 86400).toLocaleString(loc, {maximumFractionDigits: 1});
+        document.getElementById('out-h').innerText = (grindSec / 3600).toLocaleString(loc, {maximumFractionDigits: 1});
         document.getElementById('hms-needed').innerText = formatHMS(grindSec);
-        if (grindSec > 0) document.getElementById('done-by').innerText = new Date(Date.now() + grindSec*1000).toLocaleString(translations[currentLang].locale);
+        if (grindSec > 0) document.getElementById('done-by').innerText = new Date(Date.now() + grindSec*1000).toLocaleString(loc);
     }
     saveData();
 }
@@ -231,32 +230,13 @@ function toggleModal() {
 function changeLanguage() {
     currentLang = document.getElementById('langSelect').value;
     const t = translations[currentLang];
-    document.getElementById('lbl-rate').innerText = t.rate;
-    document.getElementById('lbl-needed').innerText = t.needed;
-    document.getElementById('lbl-estimation').innerText = t.estimation;
-    document.getElementById('lbl-d').innerText = t.d;
-    document.getElementById('lbl-h').innerText = t.h;
-    document.getElementById('lbl-completion').innerText = t.completion;
-    document.getElementById('lbl-strat-title').innerText = t.strat_title;
-    document.getElementById('lbl-th-tier').innerText = t.th_tier;
-    document.getElementById('lbl-th-merge').innerText = t.th_merge;
-    document.getElementById('lbl-th-result').innerText = t.th_result;
-    document.getElementById('btn-reset-have').innerText = t.reset_have;
-    document.getElementById('btn-reset-want').innerText = t.reset_want;
-    document.getElementById('btn-reset-both').innerText = t.reset_both;
+    const ids = ['lbl-rate','lbl-needed','lbl-estimation','lbl-d','lbl-h','lbl-completion','lbl-strat-title','lbl-th-tier','lbl-th-merge','lbl-th-result','btn-reset-have','btn-reset-want','btn-reset-both','lbl-rune-stats','lbl-rune-luck','lbl-rune-bulk','lbl-rune-speed','lbl-rune-target','lbl-rune-goal','lbl-raw-rps','lbl-multi-rps','lbl-rune-results','lbl-req-bulk','lbl-time-grind'];
+    ids.forEach(id => { 
+        let el = document.getElementById(id); 
+        if(el) el.innerText = t[id.replace('lbl-','').replace('btn-','')]; 
+    });
     document.querySelectorAll('.lbl-have').forEach(e => e.innerText = t.have);
     document.querySelectorAll('.lbl-want').forEach(e => e.innerText = t.want);
-    document.getElementById('lbl-rune-stats').innerText = t.rune_stats;
-    document.getElementById('lbl-rune-luck').innerText = t.rune_luck;
-    document.getElementById('lbl-rune-bulk').innerText = t.rune_bulk;
-    document.getElementById('lbl-rune-speed').innerText = t.rune_speed;
-    document.getElementById('lbl-rune-target').innerText = t.rune_target;
-    document.getElementById('lbl-rune-goal').innerText = t.rune_goal;
-    document.getElementById('lbl-raw-rps').innerText = t.raw_rps;
-    document.getElementById('lbl-multi-rps').innerText = t.multi_rps;
-    document.getElementById('lbl-rune-results').innerText = t.rune_results;
-    document.getElementById('lbl-req-bulk').innerText = t.req_bulk;
-    document.getElementById('lbl-time-grind').innerText = t.time_grind;
     document.querySelectorAll('.have-in, .want-in').forEach(input => {
         let v = parseRaw(input.value);
         if (v > 0) input.value = Math.floor(v).toLocaleString(t.locale);
@@ -265,8 +245,7 @@ function changeLanguage() {
 }
 
 function setupRuneDropdowns() {
-    const ids = ['runeLuckSuffix', 'runeBulkSuffix', 'runeTargetSuffix'];
-    ids.forEach(id => {
+    ['runeLuckSuffix', 'runeBulkSuffix', 'runeTargetSuffix'].forEach(id => {
         const sel = document.getElementById(id);
         if (!sel) return;
         sel.innerHTML = '';
@@ -286,8 +265,12 @@ function exportData() {
 function importData() { 
     const area = document.getElementById('io-area');
     if (area && area.value) {
-        localStorage.setItem('factoryV8', atob(area.value)); 
-        location.reload(); 
+        try {
+            const decoded = atob(area.value);
+            JSON.parse(decoded);
+            localStorage.setItem('factoryV8', decoded); 
+            location.reload();
+        } catch(e) { alert("Invalid Data"); }
     }
 }
 
@@ -319,19 +302,19 @@ function loadData() {
     const saved = localStorage.getItem('factoryV8');
     if (saved) {
         const data = JSON.parse(saved);
-        if (document.getElementById('rate')) document.getElementById('rate').value = data.rate || "350";
+        if (document.getElementById('rate')) document.getElementById('rate').value = data.rate;
         currentLang = data.lang || 'en';
         if (document.getElementById('langSelect')) document.getElementById('langSelect').value = currentLang;
         setPerc(data.perc || 10);
         activeView = data.view || 'factory';
         if(data.rune) {
-            if (document.getElementById('runeLuckNum')) document.getElementById('runeLuckNum').value = data.rune.luck;
-            if (document.getElementById('runeLuckSuffix')) document.getElementById('runeLuckSuffix').value = data.rune.luckSfx;
-            if (document.getElementById('runeBulkNum')) document.getElementById('runeBulkNum').value = data.rune.bulk;
-            if (document.getElementById('runeBulkSuffix')) document.getElementById('runeBulkSuffix').value = data.rune.bulkSfx;
-            if (document.getElementById('runeSpeed')) document.getElementById('runeSpeed').value = data.rune.speed;
-            if (document.getElementById('runeTargetNum')) document.getElementById('runeTargetNum').value = data.rune.target;
-            if (document.getElementById('runeTargetSuffix')) document.getElementById('runeTargetSuffix').value = data.rune.targetSfx;
+            document.getElementById('runeLuckNum').value = data.rune.luck;
+            document.getElementById('runeLuckSuffix').value = data.rune.luckSfx;
+            document.getElementById('runeBulkNum').value = data.rune.bulk;
+            document.getElementById('runeBulkSuffix').value = data.rune.bulkSfx;
+            document.getElementById('runeSpeed').value = data.rune.speed;
+            document.getElementById('runeTargetNum').value = data.rune.target;
+            document.getElementById('runeTargetSuffix').value = data.rune.targetSfx;
         }
         if(data.factoryTiers) {
             data.factoryTiers.forEach((t, i) => {
