@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory & Rune Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header-nav">
+        <div class="nav-left">
+            <select id="langSelect">
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="pl">Polski</option>
+                <option value="ru">Русский</option>
+                <option value="id">Bahasa Indonesia</option>
+                <option value="pt">Português</option>
+            </select>
+            <button class="btn-nav active" id="nav-factory">Factory Calculator</button>
+            <button class="btn-nav" id="nav-rune">Rune Calculator</button>
+        </div>
+        <button class="btn-settings" id="btn-open-settings">⚙️ Settings</button>
+    </div>
+
+    <div id="view-factory" class="view-section active">
+        <h1>Factory Calculator</h1>
+        <div class="top-bar">
+            <div class="stat-card">
+                <label id="lbl-rate">Points / Sec (Rate)</label>
+                <input type="text" id="rate" value="350">
+            </div>
+            <div class="stat-card">
+                <label id="lbl-needed">Real Points Needed</label>
+                <div id="pts-needed" class="needed-val">0</div>
+            </div>
+        </div>
+        <div class="tier-grid" id="tier-container"></div>
+        <div class="reset-container">
+            <button class="btn-action" id="btn-reset-want">Reset "Want"</button>
+            <button class="btn-action" id="btn-reset-have">Reset "Have"</button>
+            <button class="btn-action" id="btn-reset-both">Reset All</button>
+        </div>
+        <div class="strategy-card">
+            <div class="strategy-header">
+                <h3 id="lbl-strat-title">Bulk Merger Strategy</h3>
+                <div class="perc-btn-group">
+                    <button class="perc-btn" data-perc="10">10%</button>
+                    <button class="perc-btn" data-perc="25">25%</button>
+                    <button class="perc-btn" data-perc="50">50%</button>
+                </div>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="strategy-table">
+                    <thead>
+                        <tr><th id="lbl-th-tier">Target</th><th id="lbl-th-merge">Merge Previous at...</th><th id="lbl-th-result">Est. Gain</th></tr>
+                    </thead>
+                    <tbody id="strategy-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-rune" class="view-section">
+        <h1>Rune Calculator</h1>
+        <div class="rune-grid">
+            <div class="rune-box">
+                <h3 id="lbl-rune-stats">1. Current Stats</h3>
+                <label id="lbl-rune-luck">Rune Luck Multiplier:</label>
+                <div class="rune-input-group">
+                    <input type="text" id="runeLuckNum" value="1">
+                    <select id="runeLuckSuffix"></select>
+                </div>
+                <label id="lbl-rune-bulk">Rune Bulk:</label>
+                <div class="rune-input-group">
+                    <input type="text" id="runeBulkNum" value="1">
+                    <select id="runeBulkSuffix"></select>
+                </div>
+                <label id="lbl-rune-speed">Rune Speed (Seconds):</label>
+                <input type="text" id="runeSpeed" value="0.05" class="rune-speed-input">
+            </div>
+            <div class="rune-box">
+                <h3 id="lbl-rune-target">2. Target Settings</h3>
+                <label id="lbl-rune-goal">Target Amount / RPS Goal:</label>
+                <div class="rune-input-group">
+                    <input type="text" id="runeTargetNum" value="10">
+                    <select id="runeTargetSuffix"></select>
+                </div>
+                <div style="margin-top:20px;">
+                    <label id="lbl-raw-rps">Raw Production (RPS):</label>
+                    <div id="out-raw-rps" class="rune-res-val">-</div>
+                    <label id="lbl-multi-rps">Multiplied Score /s:</label>
+                    <div id="out-multi-rps" class="rune-res-val" style="color:var(--blue)">-</div>
+                </div>
+            </div>
+        </div>
+        <div class="rune-box result-border">
+            <h3 id="lbl-rune-results" style="color:var(--green)">3. Results & Time</h3>
+            <div class="res-split">
+                <div>
+                    <label id="lbl-req-bulk">Required Bulk for Goal:</label>
+                    <div id="out-req-bulk" class="rune-res-val">-</div>
+                </div>
+                <div>
+                    <label id="lbl-time-grind">Time to reach Goal:</label>
+                    <div id="out-rune-time" class="rune-res-val" style="color:var(--blue)">-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <div class="res-column">
+            <h3 id="lbl-estimation">Time Estimation</h3>
+            <div class="res-row"><span id="lbl-d">Days:</span> <span class="res-val" id="out-d">0</span></div>
+            <div class="res-row"><span id="lbl-h">Hours:</span> <span class="res-val" id="out-h">0</span></div>
+        </div>
+        <div class="res-column" style="text-align: center;">
+            <h3 id="lbl-completion">Completion Date</h3>
+            <div id="hms-needed" class="hms-val">00:00:00</div>
+            <div class="done-text" id="done-by">--/--/-- - --:--</div>
+        </div>
+    </div>
+</div>
+
+<div id="settingsModal" class="modal">
+    <div class="modal-content">
+        <h2 style="color: var(--blue); margin-top: 0;">Settings</h2>
+        <div style="margin-bottom: 20px;">
+            <label style="color:var(--blue); display:block; margin-bottom:10px;">Data Export / Import</label>
+            <textarea id="io-area"></textarea>
+            <div style="display: flex; gap: 5px; margin-top: 10px;">
+                <button class="btn-nav" id="btn-export" style="flex:1">Export</button>
+                <button class="btn-nav" id="btn-import" style="flex:1">Import</button>
+            </div>
+        </div>
+        <button id="btn-close-modal" class="btn-close">Close</button>
+    </div>
+</div>
+
+<div id="smiley-assistant">
+    <svg viewBox="0 0 100 120">
+        <defs>
+            <linearGradient id="headGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#ffe100" />
+                <stop offset="100%" style="stop-color:#ff9900" />
+            </linearGradient>
+        </defs>
+        
+        <rect id="assistant-head" x="10" y="10" width="80" height="80" rx="15" fill="url(#headGrad)" />
+        
+        <path id="puke-trace" d="M 40 70 Q 50 75 60 70 L 65 110 Q 50 120 35 110 Z" fill="#4ade80" opacity="0" />
+
+        <g id="eyes-normal">
+            <ellipse cx="38" cy="48" rx="5" ry="10" fill="#222" />
+            <ellipse cx="62" cy="48" rx="5" ry="10" fill="#222" />
+        </g>
+
+        <g id="eyes-closed" opacity="0">
+            <path d="M 30 48 L 45 48" stroke="#222" stroke-width="3" stroke-linecap="round" />
+            <path d="M 55 48 L 70 48" stroke="#222" stroke-width="3" stroke-linecap="round" />
+        </g>
+
+        <g id="eyes-swirl" opacity="0">
+            <path class="swirl-eye" d="M 33 48 C 33 43, 43 43, 43 48 C 43 53, 33 53, 33 48 M 35 48 C 35 46, 41 46, 41 48 C 41 50, 35 50, 35 48" stroke="#222" stroke-width="1.5" fill="none" />
+            <path class="swirl-eye" d="M 57 48 C 57 43, 67 43, 67 48 C 67 53, 57 53, 57 48 M 59 48 C 59 46, 65 46, 65 48 C 65 50, 59 50, 59 48" stroke="#222" stroke-width="1.5" fill="none" />
+        </g>
+
+        <g id="zzz-group" opacity="0">
+            <text x="75" y="30" fill="white" font-size="10" font-weight="bold" class="zzz-anim">Z</text>
+            <text x="82" y="22" fill="white" font-size="14" font-weight="bold" class="zzz-anim" style="animation-delay: 0.6s">z</text>
+        </g>
+
+        <g id="brow-group" opacity="0">
+            <path id="eyebrow-l" d="M 30 35 L 45 35" stroke="#222" stroke-width="3" stroke-linecap="round" />
+            <path id="eyebrow-r" d="M 55 35 L 70 35" stroke="#222" stroke-width="3" stroke-linecap="round" />
+        </g>
+
+        <path id="mouth" d="M 38 72 Q 50 80 62 72" stroke="#222" stroke-width="4" fill="none" stroke-linecap="round" />
+    </svg>
+</div>
+
+<script type="module" src="js/script.js"></script>
+</body>
+</html>
